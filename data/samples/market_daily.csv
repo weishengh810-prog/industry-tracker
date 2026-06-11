@@ -1,0 +1,13 @@
+industry,date,metric,value,source,status
+人工智能,2026-06-10,market_return_3m,0.184,人工智能ETF (159819.SZ),sample
+半导体,2026-06-10,market_return_3m,0.126,半导体ETF (512480.SS),sample
+新能源汽车,2026-06-10,market_return_3m,0.071,新能源汽车ETF (515030.SS),sample
+储能,2026-06-10,market_return_3m,0.093,储能电池ETF (159566.SZ),sample
+机器人,2026-06-10,market_return_3m,0.162,机器人ETF (562500.SS),sample
+低空经济,2026-06-10,market_return_3m,,无,missing_config
+跨境电商,2026-06-10,market_return_3m,,无,missing_config
+医药健康,2026-06-10,market_return_3m,-0.018,医药ETF (512010.SS),sample
+消费零售,2026-06-10,market_return_3m,0.024,消费ETF (159928.SZ),sample
+物流供应链,2026-06-10,market_return_3m,0.037,物流ETF (516910.SS),sample
+旅游,2026-06-10,market_return_3m,0.052,旅游ETF (159766.SZ),sample
+网络安全,2026-06-10,market_return_3m,0.108,信息安全ETF (159994.SZ),sample

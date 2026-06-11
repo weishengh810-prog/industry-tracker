@@ -41,24 +41,43 @@ def ensure_directories(root: Path = PROJECT_ROOT) -> None:
         (root / relative).mkdir(parents=True, exist_ok=True)
 
 
-def setup_logging(root: Path = PROJECT_ROOT) -> logging.Logger:
-    ensure_directories(root)
+def setup_logging(root: Path | None = None) -> logging.Logger:
     logger = logging.getLogger("industry_tracker")
-    if logger.handlers:
+    if root is None and logger.handlers:
         return logger
 
+    target_root = Path(root) if root is not None else PROJECT_ROOT
+    target_main_log = (target_root / "logs" / "industry_tracker.log").resolve()
+    current_main_log = getattr(logger, "_industry_tracker_main_log", None)
+    if logger.handlers and current_main_log == target_main_log:
+        return logger
+
+    for handler in logger.handlers[:]:
+        logger.removeHandler(handler)
+        handler.close()
+
+    ensure_directories(target_root)
+
     logger.setLevel(logging.INFO)
+    logger.propagate = False
     formatter = logging.Formatter(
         "%(asctime)s | %(levelname)s | %(name)s | %(message)s"
     )
     file_handler = logging.FileHandler(
-        root / "logs" / "industry_tracker.log", encoding="utf-8"
+        target_main_log, encoding="utf-8"
     )
+    error_handler = logging.FileHandler(
+        target_root / "logs" / "error.log", encoding="utf-8"
+    )
+    error_handler.setLevel(logging.ERROR)
     stream_handler = logging.StreamHandler()
     file_handler.setFormatter(formatter)
+    error_handler.setFormatter(formatter)
     stream_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
+    logger.addHandler(error_handler)
     logger.addHandler(stream_handler)
+    logger._industry_tracker_main_log = target_main_log
     return logger
 
 

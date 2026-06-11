@@ -1,12 +1,16 @@
 from __future__ import annotations
 
 import argparse
+import sys
 from datetime import date
 from pathlib import Path
 from typing import Any, Callable
 
 import pandas as pd
 import yfinance as yf
+
+if __package__ in {None, ""}:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from scripts.common import (
     LONG_COLUMNS,

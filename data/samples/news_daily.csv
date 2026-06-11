@@ -1,0 +1,13 @@
+industry,date,metric,value,source,status
+人工智能,2026-06-10,news_heat,32,offline_sample,sample
+半导体,2026-06-10,news_heat,26,offline_sample,sample
+新能源汽车,2026-06-10,news_heat,22,offline_sample,sample
+储能,2026-06-10,news_heat,16,offline_sample,sample
+机器人,2026-06-10,news_heat,28,offline_sample,sample
+低空经济,2026-06-10,news_heat,19,offline_sample,sample
+跨境电商,2026-06-10,news_heat,13,offline_sample,sample
+医药健康,2026-06-10,news_heat,18,offline_sample,sample
+消费零售,2026-06-10,news_heat,15,offline_sample,sample
+物流供应链,2026-06-10,news_heat,11,offline_sample,sample
+旅游,2026-06-10,news_heat,14,offline_sample,sample
+网络安全,2026-06-10,news_heat,17,offline_sample,sample

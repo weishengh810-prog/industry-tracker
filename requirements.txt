@@ -1,0 +1,7 @@
+pandas>=2.2
+requests>=2.32
+feedparser>=6.0
+beautifulsoup4>=4.12
+yfinance>=0.2
+matplotlib>=3.9
+pytest>=8.0

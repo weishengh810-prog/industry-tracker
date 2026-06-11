@@ -11,6 +11,20 @@ import matplotlib
 matplotlib.use("Agg")
 
 import matplotlib.pyplot as plt
+from matplotlib import font_manager
+
+_CJK_FONT_CANDIDATES = [
+    "/usr/share/fonts/wqy-microhei/wqy-microhei.ttc",
+    "/usr/share/fonts/google-droid/DroidSansFallback.ttf",
+]
+
+for _font_path in _CJK_FONT_CANDIDATES:
+    if Path(_font_path).exists():
+        font_manager.fontManager.addfont(_font_path)
+        plt.rcParams["font.family"] = font_manager.FontProperties(fname=_font_path).get_name()
+        break
+
+plt.rcParams["axes.unicode_minus"] = False
 import pandas as pd
 
 if __package__ in {None, ""}:

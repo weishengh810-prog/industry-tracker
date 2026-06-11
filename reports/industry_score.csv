@@ -1,0 +1,13 @@
+﻿rank,industry,data_date,composite_score,news_heat,news_heat_score,market_return_3m,market_return_3m_score,policy_heat,policy_heat_score,available_weight,missing_metrics,data_status
+1,半导体,2026-06-12,79.92,2.0,91.66666666666666,0.3316422799135374,90.0,0.0,54.166666666666664,1.0,,news_heat:ok; market_return_3m:ok; policy_heat:no_match
+2,人工智能,2026-06-12,76.92,2.0,91.66666666666666,0.2225080945410193,80.0,0.0,54.166666666666664,1.0,,news_heat:ok; market_return_3m:ok; policy_heat:no_match
+3,机器人,2026-06-12,73.92,2.0,91.66666666666666,0.0947774919496262,70.0,0.0,54.166666666666664,1.0,,news_heat:ok; market_return_3m:ok; policy_heat:no_match
+4,网络安全,2026-06-12,62.92,0.0,41.66666666666667,0.4720559498464378,100.0,0.0,54.166666666666664,1.0,,news_heat:no_match; market_return_3m:ok; policy_heat:no_match
+5,新能源汽车,2026-06-12,50.92,0.0,41.66666666666667,-0.0454545511166185,60.0,0.0,54.166666666666664,1.0,,news_heat:no_match; market_return_3m:ok; policy_heat:no_match
+6,物流供应链,2026-06-12,47.92,0.0,41.66666666666667,-0.0803937094655404,50.0,0.0,54.166666666666664,1.0,,news_heat:no_match; market_return_3m:ok; policy_heat:no_match
+7,低空经济,2026-06-12,47.02,0.0,41.66666666666667,,,0.0,54.166666666666664,0.7,market_return_3m,news_heat:no_match; market_return_3m:missing_config; policy_heat:no_match
+7,跨境电商,2026-06-12,47.02,0.0,41.66666666666667,,,0.0,54.166666666666664,0.7,market_return_3m,news_heat:no_match; market_return_3m:missing_config; policy_heat:no_match
+9,储能,2026-06-12,44.92,0.0,41.66666666666667,-0.114297824116275,40.0,0.0,54.166666666666664,1.0,,news_heat:no_match; market_return_3m:ok; policy_heat:no_match
+10,医药健康,2026-06-12,41.92,0.0,41.66666666666667,-0.1286863495694203,30.0,0.0,54.166666666666664,1.0,,news_heat:no_match; market_return_3m:ok; policy_heat:no_match
+11,消费零售,2026-06-12,38.92,0.0,41.66666666666667,-0.1623711894505927,20.0,0.0,54.166666666666664,1.0,,news_heat:no_match; market_return_3m:ok; policy_heat:no_match
+12,旅游,2026-06-12,35.92,0.0,41.66666666666667,-0.1906076743123073,10.0,0.0,54.166666666666664,1.0,,news_heat:no_match; market_return_3m:ok; policy_heat:no_match

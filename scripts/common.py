@@ -10,6 +10,7 @@ import pandas as pd
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 CONFIG_DIR = PROJECT_ROOT / "config"
 DATA_DIR = PROJECT_ROOT / "data"
+CACHE_DIR = DATA_DIR / "cache"
 RAW_DIR = DATA_DIR / "raw"
 PROCESSED_DIR = DATA_DIR / "processed"
 SAMPLES_DIR = DATA_DIR / "samples"
@@ -40,6 +41,7 @@ VALID_STATUSES = {
 
 def ensure_directories(root: Path = PROJECT_ROOT) -> None:
     for relative in (
+        "data/cache",
         "data/raw",
         "data/processed",
         "data/samples",

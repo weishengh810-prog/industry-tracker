@@ -4,6 +4,7 @@ from scripts.common import (
     LONG_COLUMNS,
     VALID_METRICS,
     VALID_STATUSES,
+    ensure_directories,
     load_industries,
     load_sources,
     setup_logging,
@@ -144,3 +145,9 @@ def test_setup_logging_writes_separate_error_log(tmp_path):
     assert any(
         isinstance(handler, logging.FileHandler) for handler in logger.handlers
     )
+
+
+def test_ensure_directories_creates_cache_directory(tmp_path):
+    ensure_directories(tmp_path)
+
+    assert (tmp_path / "data" / "cache").is_dir()

@@ -13,6 +13,7 @@ from scripts.common import PROJECT_ROOT
         "fetch_policy.py",
         "fetch_market.py",
         "fetch_arxiv.py",
+        "fetch_github_activity.py",
         "build_dataset.py",
         "score_industries.py",
         "generate_report.py",

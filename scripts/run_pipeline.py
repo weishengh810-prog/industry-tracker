@@ -28,18 +28,20 @@ from scripts.generate_report import generate_report
 from scripts.score_industries import score_industries
 
 
-def _source_error_frame(metric: str, source: str) -> pd.DataFrame:
+def _source_error_frame(metric: str | list[str], source: str) -> pd.DataFrame:
+    metrics = [metric] if isinstance(metric, str) else metric
     return pd.DataFrame(
         [
             {
                 "industry": item["name"],
                 "date": date.today().isoformat(),
-                "metric": metric,
+                "metric": current_metric,
                 "value": None,
                 "source": source,
                 "status": "source_error",
             }
             for item in load_industries()
+            for current_metric in metrics
         ],
         columns=LONG_COLUMNS,
     )
@@ -47,7 +49,7 @@ def _source_error_frame(metric: str, source: str) -> pd.DataFrame:
 
 def _run_collector(
     name: str,
-    metric: str,
+    metric: str | list[str],
     output_path: Path,
     collector: Callable[[], pd.DataFrame],
     logger,

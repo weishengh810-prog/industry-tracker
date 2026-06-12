@@ -3,62 +3,74 @@
     {
       "name": "人工智能",
       "keywords": ["人工智能", "AI", "大模型", "AI Agent", "算力"],
-      "market_proxy": {"ticker": "159819.SZ", "name": "人工智能ETF"}
+      "keywords_en": ["artificial intelligence", "large language model", "generative AI"],
+      "market_proxy": {"ticker": "AIQ", "name": "Global X Artificial Intelligence & Technology ETF"}
     },
     {
       "name": "半导体",
       "keywords": ["半导体", "芯片", "集成电路", "晶圆", "光刻"],
-      "market_proxy": {"ticker": "512480.SS", "name": "半导体ETF"}
+      "keywords_en": ["semiconductor", "chip", "integrated circuit"],
+      "market_proxy": {"ticker": "SMH", "name": "VanEck Semiconductor ETF"}
     },
     {
       "name": "新能源汽车",
       "keywords": ["新能源汽车", "新能源车", "动力电池", "充电桩", "智能驾驶"],
-      "market_proxy": {"ticker": "515030.SS", "name": "新能源汽车ETF"}
+      "keywords_en": ["electric vehicle", "EV battery", "autonomous driving"],
+      "market_proxy": {"ticker": "DRIV", "name": "Global X Autonomous & Electric Vehicles ETF"}
     },
     {
       "name": "储能",
       "keywords": ["储能", "新型储能", "电化学储能", "储能电池", "储能电站"],
-      "market_proxy": {"ticker": "159566.SZ", "name": "储能电池ETF"}
+      "keywords_en": ["energy storage", "battery storage", "grid storage"],
+      "market_proxy": {"ticker": "BATT", "name": "Amplify Lithium & Battery Technology ETF"}
     },
     {
       "name": "机器人",
       "keywords": ["机器人", "人形机器人", "工业机器人", "具身智能", "机器视觉"],
-      "market_proxy": {"ticker": "562500.SS", "name": "机器人ETF"}
+      "keywords_en": ["robotics", "industrial robot", "humanoid robot"],
+      "market_proxy": {"ticker": "ROBO", "name": "ROBO Global Robotics and Automation Index ETF"}
     },
     {
       "name": "低空经济",
       "keywords": ["低空经济", "eVTOL", "通用航空", "无人机", "低空飞行"],
-      "market_proxy": null
+      "keywords_en": ["drone", "eVTOL", "urban air mobility"],
+      "market_proxy": {"ticker": "ARKX", "name": "ARK Space Exploration & Innovation ETF"}
     },
     {
       "name": "跨境电商",
       "keywords": ["跨境电商", "出海", "海外仓", "TikTok Shop", "独立站"],
-      "market_proxy": null
+      "keywords_en": ["cross-border e-commerce", "global marketplace", "overseas warehouse"],
+      "market_proxy": {"ticker": "EMQQ", "name": "EMQQ The Emerging Markets Internet & Ecommerce ETF"}
     },
     {
       "name": "医药健康",
       "keywords": ["医药", "医疗健康", "创新药", "医疗器械", "生物医药"],
-      "market_proxy": {"ticker": "512010.SS", "name": "医药ETF"}
+      "keywords_en": ["pharmaceutical", "biotech", "medical device"],
+      "market_proxy": {"ticker": "IXJ", "name": "iShares Global Healthcare ETF"}
     },
     {
       "name": "消费零售",
       "keywords": ["消费零售", "零售", "消费品", "社会消费品", "新消费"],
-      "market_proxy": {"ticker": "159928.SZ", "name": "消费ETF"}
+      "keywords_en": ["consumer retail", "e-commerce", "consumer goods"],
+      "market_proxy": {"ticker": "CHIQ", "name": "Global X MSCI China Consumer Discretionary ETF"}
     },
     {
       "name": "物流供应链",
       "keywords": ["物流", "供应链", "快递", "仓储", "冷链"],
-      "market_proxy": {"ticker": "516910.SS", "name": "物流ETF"}
+      "keywords_en": ["logistics", "supply chain", "freight"],
+      "market_proxy": {"ticker": "SHPP", "name": "Pacer Industrials and Logistics ETF"}
     },
     {
       "name": "旅游",
       "keywords": ["旅游", "文旅", "酒店", "景区", "出境游"],
-      "market_proxy": {"ticker": "159766.SZ", "name": "旅游ETF"}
+      "keywords_en": ["tourism", "travel", "hospitality"],
+      "market_proxy": {"ticker": "AWAY", "name": "Amplify Travel Tech ETF"}
     },
     {
       "name": "网络安全",
       "keywords": ["网络安全", "信息安全", "数据安全", "云安全", "密码安全"],
-      "market_proxy": {"ticker": "159994.SZ", "name": "信息安全ETF"}
+      "keywords_en": ["cybersecurity", "information security", "network security"],
+      "market_proxy": {"ticker": "CIBR", "name": "First Trust NASDAQ Cybersecurity ETF"}
     }
   ]
 }

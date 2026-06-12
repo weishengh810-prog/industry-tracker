@@ -18,7 +18,16 @@ CHARTS_DIR = PROJECT_ROOT / "charts"
 LOGS_DIR = PROJECT_ROOT / "logs"
 
 LONG_COLUMNS = ["industry", "date", "metric", "value", "source", "status"]
-VALID_METRICS = {"news_heat", "policy_heat", "market_return_3m"}
+VALID_METRICS = {
+    "news_heat",
+    "policy_heat",
+    "market_return_3m",
+    "market_return_4w",
+    "market_volume_change_4w",
+    "arxiv_paper_count_4w",
+    "github_repo_count_4w",
+    "nvd_cve_count_4w",
+}
 VALID_STATUSES = {
     "ok",
     "sample",

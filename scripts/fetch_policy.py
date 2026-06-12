@@ -29,7 +29,9 @@ def _sample_policy(sample_path: Path) -> pd.DataFrame:
     return frame[LONG_COLUMNS]
 
 
-def _error_rows(industries: list[dict[str, Any]]) -> pd.DataFrame:
+def _error_rows(
+    industries: list[dict[str, Any]], status: str = "source_error"
+) -> pd.DataFrame:
     return pd.DataFrame(
         [
             {
@@ -38,7 +40,7 @@ def _error_rows(industries: list[dict[str, Any]]) -> pd.DataFrame:
                 "metric": "policy_heat",
                 "value": None,
                 "source": "configured_sources",
-                "status": "source_error",
+                "status": status,
             }
             for item in industries
         ],
@@ -64,6 +66,11 @@ def collect_policy(
         return frame
 
     configured_sources = sources if sources is not None else load_sources()["policy"]
+    if not configured_sources:
+        frame = _error_rows(industries, status="missing_config")
+        write_csv(frame, output_path)
+        return frame
+
     entries: list[dict] = []
     successful_sources = 0
     for source in configured_sources:

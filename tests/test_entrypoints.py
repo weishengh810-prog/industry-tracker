@@ -16,6 +16,7 @@ from scripts.common import PROJECT_ROOT
         "fetch_github_activity.py",
         "fetch_nvd.py",
         "build_dataset.py",
+        "build_momentum_features.py",
         "score_industries.py",
         "generate_report.py",
         "run_pipeline.py",

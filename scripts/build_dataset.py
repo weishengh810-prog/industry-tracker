@@ -18,7 +18,14 @@ from scripts.common import (
     write_csv,
 )
 
-RAW_FILES = ("news_daily.csv", "policy_daily.csv", "market_daily.csv")
+RAW_FILES = (
+    "news_daily.csv",
+    "policy_daily.csv",
+    "market_daily.csv",
+    "arxiv_daily.csv",
+    "github_daily.csv",
+    "nvd_daily.csv",
+)
 
 
 def _normalize_frame(frame: pd.DataFrame, source_file: str) -> pd.DataFrame:

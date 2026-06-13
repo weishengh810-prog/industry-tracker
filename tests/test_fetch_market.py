@@ -591,6 +591,29 @@ def test_collect_market_offline_has_exactly_three_metrics_for_all_industries(
     assert not frame["source"].str.contains(r"\.(?:SZ|SS)\)").any()
 
 
+def test_collect_market_configures_project_yfinance_cache_for_default_downloader(
+    tmp_path, monkeypatch
+):
+    configured = []
+    monkeypatch.setattr(
+        market.yf,
+        "set_tz_cache_location",
+        configured.append,
+    )
+    monkeypatch.setattr(
+        market.yf,
+        "download",
+        lambda *args, **kwargs: _market_frame(),
+    )
+
+    market.collect_market(
+        output_path=tmp_path / "market.csv",
+        fallback_samples=False,
+    )
+
+    assert configured == [str(market.CACHE_DIR / "yfinance")]
+
+
 def test_collect_market_flattens_rows_without_fallback_when_any_metric_is_ok(
     tmp_path,
 ):

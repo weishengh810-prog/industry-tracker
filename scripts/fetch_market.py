@@ -14,6 +14,7 @@ if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from scripts.common import (
+    CACHE_DIR,
     LONG_COLUMNS,
     RAW_DIR,
     SAMPLES_DIR,
@@ -29,6 +30,12 @@ MARKET_METRICS = (
 )
 MIN_AVERAGE_VOLUME = 1_000
 DOWNLOAD_CALENDAR_DAYS = 121
+
+
+def _configure_yfinance_cache() -> None:
+    cache_dir = CACHE_DIR / "yfinance"
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    yf.set_tz_cache_location(str(cache_dir))
 
 
 def _extract_series(
@@ -323,6 +330,9 @@ def collect_market(
         frame = _sample_market(sample_path)
         write_csv(frame, output_path)
         return frame
+
+    if downloader is None:
+        _configure_yfinance_cache()
 
     rows = [
         row

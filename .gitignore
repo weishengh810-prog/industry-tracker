@@ -8,6 +8,7 @@ venv/
 
 data/raw/*.csv
 data/processed/*.csv
+data/cache/*
 reports/*.csv
 reports/*.md
 charts/*.png
@@ -15,6 +16,7 @@ logs/*.log
 
 !data/raw/.gitkeep
 !data/processed/.gitkeep
+!data/cache/.gitkeep
 !reports/.gitkeep
 !charts/.gitkeep
 !logs/.gitkeep

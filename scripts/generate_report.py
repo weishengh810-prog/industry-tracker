@@ -59,7 +59,24 @@ def _markdown_table(frame: pd.DataFrame, columns: list[tuple[str, str]]) -> str:
         + " |"
         for _, row in frame.iterrows()
     ]
+    if not rows:
+        rows = [
+            "| "
+            + " | ".join("-" for _ in columns)
+            + " |"
+        ]
     return "\n".join([header, separator, *rows])
+
+
+def _unique_text(scores: pd.DataFrame, column: str) -> str:
+    if column not in scores:
+        return ""
+    values = [
+        value
+        for value in scores[column].dropna().astype(str).unique()
+        if value
+    ]
+    return "；".join(values)
 
 
 def generate_report(
@@ -73,89 +90,133 @@ def generate_report(
     report_path.parent.mkdir(parents=True, exist_ok=True)
     chart_path.parent.mkdir(parents=True, exist_ok=True)
     generated_at = datetime.now().astimezone().strftime("%Y-%m-%d %H:%M:%S %Z")
-    data_dates = (
-        sorted(scores["data_date"].dropna().astype(str).unique())
-        if "data_date" in scores
-        else []
-    )
+    data_dates = sorted(scores.get("data_date", pd.Series(dtype=object)).dropna().astype(str).unique())
+    scoring_mode = _unique_text(scores, "scoring_mode") or "历史数据不足，暂不排名"
+    excluded_metrics = _unique_text(scores, "excluded_metrics") or "无"
+    ranked = scores.dropna(subset=["composite_score"]).copy()
 
     ranking_columns = [
         ("rank", "排名"),
         ("industry", "行业"),
         ("composite_score", "综合分"),
-        ("news_heat_score", "新闻热度分"),
-        ("market_return_3m_score", "市场代理分"),
-        ("policy_heat_score", "政策热度分"),
+        ("capital_momentum_score", "资本动量"),
+        ("tech_activity_score", "技术活跃度"),
         ("available_weight", "可用权重"),
+        ("ranking_status", "排名状态"),
     ]
-    top_lines = []
-    for _, row in scores.dropna(subset=["composite_score"]).head(5).iterrows():
-        top_lines.append(
-            f"- **{row['industry']}**：综合分 {_display(row['composite_score'])}；"
-            f"新闻热度 {_display(row.get('news_heat'), 0)}，"
-            f"市场代理近 3 个月收益 {_display(row.get('market_return_3m'), 4)}，"
-            f"政策热度 {_display(row.get('policy_heat'), 0)}。"
-        )
-    if not top_lines:
-        top_lines.append("- 当前没有可计算综合分的行业。")
-
-    status_columns = [
+    volume_columns = [
         ("industry", "行业"),
-        ("available_weight", "可用权重"),
-        ("missing_metrics", "缺失指标"),
-        ("data_status", "数据状态"),
+        ("market_volume_change_4w", "当期值"),
+        ("market_volume_change_4w_growth_rate_4w", "4周增长率"),
+        ("market_volume_change_4w_momentum_status", "历史状态"),
     ]
+    nvd_columns = [
+        ("industry", "行业"),
+        ("nvd_cve_count_4w", "近4周新增 CVE"),
+        ("nvd_cve_count_4w_growth_rate_4w", "4周增长率"),
+        ("nvd_cve_count_4w_momentum_status", "历史状态"),
+    ]
+
+    ranking_section = (
+        _markdown_table(ranked, ranking_columns)
+        if not ranked.empty
+        else "当前暂无可排名行业。离线样例或新部署通常需要积累约 56 天历史后，"
+        "才能计算第一批 `growth_rate_4w`。"
+    )
+    top_lines = [
+        f"- **{row['industry']}**：综合分 {_display(row['composite_score'])}，"
+        f"资本动量 {_display(row.get('capital_momentum_score'))}，"
+        f"技术活跃度 {_display(row.get('tech_activity_score'))}。"
+        for _, row in ranked.head(5).iterrows()
+    ]
+    if not top_lines:
+        top_lines = ["- 当前暂无可排名行业。"]
+
+    volume = scores[
+        scores.get(
+            "market_volume_change_4w",
+            pd.Series(index=scores.index, dtype=float),
+        ).notna()
+        | scores.get(
+            "market_volume_change_4w_growth_rate_4w",
+            pd.Series(index=scores.index, dtype=float),
+        ).notna()
+    ]
+    nvd = scores[
+        scores.get(
+            "nvd_cve_count_4w",
+            pd.Series(index=scores.index, dtype=float),
+        ).notna()
+        | scores.get(
+            "nvd_cve_count_4w_growth_rate_4w",
+            pd.Series(index=scores.index, dtype=float),
+        ).notna()
+    ]
+
     content = "\n".join(
         [
-            "# 行业发展势头排名报告",
+            "# 行业发展动量报告",
             "",
             f"- 生成时间：{generated_at}",
             f"- 数据日期：{', '.join(data_dates) if data_dates else '见评分表'}",
+            f"- 当前评分模式：{scoring_mode}",
+            f"- 未进入主评分的指标：{excluded_metrics}",
             "",
             "## 行业排名",
             "",
-            _markdown_table(scores, ranking_columns),
+            ranking_section,
             "",
-            "## Top 5 行业及判断依据",
+            "## Top 5",
             "",
             *top_lines,
             "",
-            "## 数据完整性与降级状态",
+            "## 辅助观察：成交量",
             "",
-            _markdown_table(scores, status_columns),
+            "`market_volume_change_4w` 仅作辅助观察，不进入主评分。",
             "",
-            "状态 `sample` 表示使用离线样例；`missing_config` 表示没有配置合理的市场代理；"
-            "`source_error` 表示来源请求或解析失败；`insufficient_data` 表示行情样本不足。",
+            _markdown_table(volume, volume_columns),
+            "",
+            "物流供应链使用 SHPP 作为全球市场代理。该 ETF 可能流动性偏低，"
+            "成交量变化需要结合 `insufficient_data` 状态谨慎解释。",
+            "",
+            "## 网络安全专项信号",
+            "",
+            "`nvd_cve_count_4w` 第一版只覆盖网络安全，不能单独进行行业横向评分，"
+            "因此暂不进入 `external_signal` 主评分。",
+            "",
+            _markdown_table(nvd, nvd_columns),
             "",
             "## 方法说明",
             "",
-            "综合分采用新闻热度 40%、市场表现代理 30%、政策热度 30%。"
-            "每个维度按当期行业截面百分位映射到 0-100 分。缺失维度不会按 0 分处理，"
-            "而是在可用维度上按原权重比例重新归一化。",
+            "- 主评分只使用 `growth_rate_4w`，不使用新闻、政策或当期绝对规模回退。",
+            "- 任一底层指标至少 3 个行业的 `momentum_status=ok` 才能进入截面百分位。",
+            "- `capital_momentum` 权重 35%，由 `market_return_3m` 和 `market_return_4w` 构成。",
+            "- `tech_activity` 权重 65%，由 `arxiv_paper_count_4w` 和 `github_repo_count_4w` 构成。",
+            "- 某个指标历史不足只排除该指标；可用维度按原始权重重新归一化。",
+            "- `external_signal` 字段已预留，待多个行业拥有可比专项指标后再启用。",
             "",
-            "## 市场代理指标声明",
+            "本系统比较的是行业相对自身历史的加速程度，不是行业绝对规模。",
+            "小行业若快速升温可能排名靠前；大行业若增速放缓排名会下降。",
+            "ETF 为全球市场代理，不代表中国行业真实基本面。",
+            f"当前评分模式：{scoring_mode}",
             "",
-            "ETF/指数仅作为资本市场预期的代理指标，不代表行业真实市场规模、收入或利润。"
-            "部分中国新兴行业没有合理代理标的，因此对应市场维度可能缺失。",
+            "数据来源：公开 ETF 行情、arXiv 学术论文、GitHub 开源仓库、NVD 漏洞数据库。",
             "",
-            "## 风险提示",
+            "## 数据状态",
             "",
-            "- 关键词统计会受来源覆盖、标题措辞和重复转载影响。",
-            "- 政策与新闻热度反映关注度，不等同于产业基本面改善。",
-            "- 样例数据仅用于离线演示，不能作为投资或经营决策依据。",
-            "- 排名是相对评分，应结合原始指标、缺失状态和更长时间序列解读。",
+            "`sample` 表示离线样例；`missing_config` 表示该来源不覆盖该行业；"
+            "`source_error` 表示请求或解析失败；`insufficient_data` 表示当期样本不足；"
+            "`insufficient_history` 只用于历史特征，表示尚不能计算增长率。",
             "",
         ]
     )
     report_path.write_text(content, encoding="utf-8")
 
-    chart_data = scores.dropna(subset=["composite_score"]).sort_values(
-        "composite_score"
-    )
+    chart_data = ranked.sort_values("composite_score")
     fig_height = max(4.5, len(chart_data) * 0.45)
     fig, axis = plt.subplots(figsize=(10, fig_height))
     if chart_data.empty:
-        axis.text(0.5, 0.5, "无可用评分", ha="center", va="center")
+        axis.text(0.5, 0.5, "历史数据不足，暂不排名", ha="center", va="center")
         axis.set_axis_off()
     else:
         axis.barh(
@@ -164,8 +225,8 @@ def generate_report(
             color="#2F6B9A",
         )
         axis.set_xlim(0, 100)
-        axis.set_xlabel("综合分")
-        axis.set_title("行业发展势头评分（含资本市场代理指标）")
+        axis.set_xlabel("综合动量分")
+        axis.set_title("行业相对历史加速度排名")
         axis.grid(axis="x", alpha=0.2)
         for index, value in enumerate(chart_data["composite_score"]):
             axis.text(value + 1, index, f"{value:.1f}", va="center", fontsize=9)

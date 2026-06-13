@@ -12,6 +12,7 @@ if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from scripts.build_dataset import build_dataset
+from scripts.build_momentum_features import build_momentum_features
 from scripts.common import (
     LONG_COLUMNS,
     PROJECT_ROOT,
@@ -21,25 +22,30 @@ from scripts.common import (
     setup_logging,
     write_csv,
 )
+from scripts.fetch_arxiv import collect_arxiv
+from scripts.fetch_github_activity import collect_github_activity
 from scripts.fetch_market import collect_market
 from scripts.fetch_news import collect_news
+from scripts.fetch_nvd import collect_nvd
 from scripts.fetch_policy import collect_policy
 from scripts.generate_report import generate_report
 from scripts.score_industries import score_industries
 
 
-def _source_error_frame(metric: str, source: str) -> pd.DataFrame:
+def _source_error_frame(metric: str | list[str], source: str) -> pd.DataFrame:
+    metrics = [metric] if isinstance(metric, str) else metric
     return pd.DataFrame(
         [
             {
                 "industry": item["name"],
                 "date": date.today().isoformat(),
-                "metric": metric,
+                "metric": current_metric,
                 "value": None,
                 "source": source,
                 "status": "source_error",
             }
             for item in load_industries()
+            for current_metric in metrics
         ],
         columns=LONG_COLUMNS,
     )
@@ -47,7 +53,7 @@ def _source_error_frame(metric: str, source: str) -> pd.DataFrame:
 
 def _run_collector(
     name: str,
-    metric: str,
+    metric: str | list[str],
     output_path: Path,
     collector: Callable[[], pd.DataFrame],
     logger,
@@ -85,6 +91,9 @@ def run_pipeline(
     news_path = raw_dir / "news_daily.csv"
     policy_path = raw_dir / "policy_daily.csv"
     market_path = raw_dir / "market_daily.csv"
+    arxiv_path = raw_dir / "arxiv_daily.csv"
+    github_path = raw_dir / "github_daily.csv"
+    nvd_path = raw_dir / "nvd_daily.csv"
 
     _run_collector(
         "news",
@@ -112,7 +121,11 @@ def run_pipeline(
     )
     _run_collector(
         "market",
-        "market_return_3m",
+        [
+            "market_return_3m",
+            "market_return_4w",
+            "market_volume_change_4w",
+        ],
         market_path,
         lambda: collect_market(
             offline=offline,
@@ -122,19 +135,63 @@ def run_pipeline(
         ),
         logger,
     )
+    _run_collector(
+        "arxiv",
+        "arxiv_paper_count_4w",
+        arxiv_path,
+        lambda: collect_arxiv(
+            offline=offline,
+            output_path=arxiv_path,
+            sample_path=SAMPLES_DIR / "arxiv_daily.csv",
+        ),
+        logger,
+    )
+    _run_collector(
+        "github",
+        "github_repo_count_4w",
+        github_path,
+        lambda: collect_github_activity(
+            offline=offline,
+            output_path=github_path,
+            sample_path=SAMPLES_DIR / "github_daily.csv",
+        ),
+        logger,
+    )
+    _run_collector(
+        "nvd",
+        "nvd_cve_count_4w",
+        nvd_path,
+        lambda: collect_nvd(
+            offline=offline,
+            output_path=nvd_path,
+            sample_path=SAMPLES_DIR / "nvd_daily.csv",
+        ),
+        logger,
+    )
 
     long_path = processed_dir / "industry_metrics_long.csv"
+    momentum_path = processed_dir / "momentum_features.csv"
     score_path = reports_dir / "industry_score.csv"
     report_path = reports_dir / "industry_report.md"
     chart_path = charts_dir / "industry_score_bar.png"
 
     long_frame = build_dataset(raw_dir=raw_dir, output_path=long_path)
-    scores = score_industries(long_frame, output_path=score_path)
+    momentum_frame = build_momentum_features(
+        long_frame=long_frame,
+        archives_dir=project_root / "archives",
+        output_path=momentum_path,
+    )
+    scores = score_industries(
+        long_frame,
+        momentum_frame=momentum_frame,
+        output_path=score_path,
+    )
     generate_report(scores, report_path=report_path, chart_path=chart_path)
     logger.info("pipeline completed | offline=%s", offline)
 
     return {
         "long_table": long_path,
+        "momentum": momentum_path,
         "score": score_path,
         "report": report_path,
         "chart": chart_path,

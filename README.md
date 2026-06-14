@@ -131,9 +131,70 @@ data/processed/momentum_features.csv
 reports/industry_score.csv
 reports/industry_report.md
 charts/industry_score_bar.png
+docs/index.html
+docs/data/meta.json
+docs/data/ranking.json
+docs/data/history.csv
 logs/industry_tracker.log
 logs/error.log
 ```
+
+## Web 部署
+
+项目同时保留两种 Web 运行方式：
+
+| 版本 | 部署位置 | 数据读取方式 | 适用场景 |
+| --- | --- | --- | --- |
+| FastAPI 动态版 | ECS，配合现有 systemd 与 Nginx 配置 | 读取 `web/industry.db`，提供 `/api/...` 动态 API | 服务器端查询、筛选和动态 CSV 下载 |
+| GitHub Pages 静态版 | 当前 Git 分支的 `/docs` 目录 | 读取已提交的 `docs/data/*.json` 和 `docs/data/history.csv` | 无服务器公开展示 |
+
+静态版不会请求 FastAPI，也不会替代或删除 ECS 上的动态服务。
+
+### 手动导出静态站点数据
+
+先把当前 pipeline 产物写入 SQLite，再生成 GitHub Pages 数据：
+
+```bash
+python scripts/store_to_db.py
+python scripts/export_static.py
+```
+
+导出器直接读取本地 SQLite，不要求 FastAPI 或 Uvicorn 正在运行。需要本地预览时，应通过 HTTP 服务访问，避免浏览器对 `file://` 下 `fetch` 的限制：
+
+```bash
+python -m http.server 8000 --directory docs
+```
+
+然后访问 `http://localhost:8000/`。
+
+### 开启 GitHub Pages
+
+1. 打开 GitHub 仓库的 `Settings`。
+2. 进入 `Pages`。
+3. Source 选择从分支部署。
+4. Branch 选择当前发布分支。
+5. Folder 选择 `/docs`，保存设置。
+
+仓库名为 `industry-tracker` 时，页面地址通常为：
+`https://weishengh810-prog.github.io/industry-tracker/`。
+
+### 接入每日 cron
+
+现有 `scripts/daily_update.sh` 保留 pipeline、归档和报告提交逻辑，并在 pipeline 完成后依次执行：
+
+```bash
+python scripts/store_to_db.py
+python scripts/export_static.py
+git add docs/
+```
+
+脚本仅在 staged 文件有变化时 commit 和 push。现有 cron 可继续调用：
+
+```cron
+0 6 * * * /home/admin/industry-tracker/scripts/daily_update.sh
+```
+
+ECS 如需自动 push，应在服务器外部安全配置 SSH deploy key、Git credential helper 或等价凭证。不要把私钥、token、密码、服务器凭证写入仓库，也不要放入 GitHub Pages 会公开发布的 `docs/` 目录。
 
 ## 测试
 

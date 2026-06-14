@@ -3,6 +3,7 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 INDEX_PATH = PROJECT_ROOT / "docs" / "index.html"
+README_PATH = PROJECT_ROOT / "README.md"
 
 
 def test_static_dashboard_uses_only_relative_public_data_files():
@@ -35,3 +36,20 @@ def test_static_dashboard_retains_core_views_and_nested_metric_contract():
     assert "historyChart" in html
     assert "detailChart" in html
     assert "@media (max-width:" in html
+
+
+def test_readme_documents_dynamic_and_static_deployment():
+    readme = README_PATH.read_text(encoding="utf-8")
+
+    assert "FastAPI" in readme
+    assert "ECS" in readme
+    assert "GitHub Pages" in readme
+    assert "Settings" in readme
+    assert "Pages" in readme
+    assert "/docs" in readme
+    assert "python scripts/store_to_db.py" in readme
+    assert "python scripts/export_static.py" in readme
+    assert "scripts/daily_update.sh" in readme
+    assert "SSH deploy key" in readme
+    assert "token" in readme.lower()
+    assert "私钥" in readme

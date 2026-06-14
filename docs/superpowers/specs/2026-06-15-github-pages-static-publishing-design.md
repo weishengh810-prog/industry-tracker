@@ -43,11 +43,13 @@ Contains the latest score date's industries in ranking order. Each item contains
 
 - Latest score and ranking fields
 - Score and ranking changes against the preceding score date
-- `latest_metrics`, joining the latest daily metric rows with the latest
-  momentum feature rows for that industry
+- `latest_metrics.daily_metrics`, containing the latest daily metric rows
+- `latest_metrics.momentum_features`, containing the latest momentum feature rows
 
-Embedding metric detail preserves the industry detail view without adding a
-fourth static data file or calling `/api/industry/{name}`.
+The stable nested structure avoids field-name collisions while preserving the
+industry detail view without adding a fourth static data file or calling
+`/api/industry/{name}`. The browser joins the two arrays by metric name when it
+renders the latest metric status.
 
 ### `docs/data/history.csv`
 
@@ -58,9 +60,16 @@ Contains all rows from `industry_scores`, ordered by date and industry, with:
 - `composite_score`
 - `ranking`
 - `ranking_status`
+- `capital_momentum_score`
+- `tech_activity_score`
+- `external_signal_score`
+- `score_change`
+- `ranking_change`
 
 The static page parses this file in the browser for the history comparison chart
-and per-industry 30-day detail chart. The same file is the CSV download target.
+and per-industry 30-day detail chart, including optional component-score trends.
+`score_change` and `ranking_change` compare each row with the preceding score
+date for the same industry. The same file is the CSV download target.
 
 ## Export Behavior
 
@@ -122,14 +131,19 @@ It stages `docs/` together with the existing daily artifacts. The current
 runs afterward. No credentials are stored in the repository; ECS must use an SSH
 deploy key or another securely configured Git credential.
 
+Because GitHub Pages publishes `docs/` publicly, that directory contains only
+the dashboard, generated public data, and non-sensitive documentation. Private
+keys, tokens, passwords, server addresses, and deployment credentials must not
+be written to `docs/` or any other tracked file.
+
 ## Testing
 
 Tests cover:
 
 - Creation and schema of all three static data files
 - Chinese JSON text remaining unescaped
-- Ranking changes and embedded latest metric detail
-- Complete, deterministic history export
+- Ranking changes and nested latest daily/momentum metric detail
+- Complete, deterministic history export with component scores and changes
 - Repeated export without duplicate rows or exceptions
 - `docs/index.html` containing only `./data/...` fetch targets and no `/api/`
 - Daily script ordering and no-change commit behavior

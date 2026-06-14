@@ -20,6 +20,7 @@ from scripts.common import PROJECT_ROOT
         "score_industries.py",
         "generate_report.py",
         "run_pipeline.py",
+        "export_static.py",
     ],
 )
 def test_script_can_run_directly(script_name):

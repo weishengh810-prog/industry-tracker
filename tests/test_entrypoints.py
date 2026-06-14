@@ -21,6 +21,7 @@ from scripts.common import PROJECT_ROOT
         "generate_report.py",
         "run_pipeline.py",
         "export_static.py",
+        "check_static_publish.py",
     ],
 )
 def test_script_can_run_directly(script_name):

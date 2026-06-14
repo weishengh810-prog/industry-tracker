@@ -183,18 +183,38 @@ python -m http.server 8000 --directory docs
 现有 `scripts/daily_update.sh` 保留 pipeline、归档和报告提交逻辑，并在 pipeline 完成后依次执行：
 
 ```bash
+python scripts/run_pipeline.py
 python scripts/store_to_db.py
 python scripts/export_static.py
-git add docs/
+git add docs/ reports/ charts/ data/ archives/
+git commit
+git push
 ```
 
-脚本仅在 staged 文件有变化时 commit 和 push。现有 cron 可继续调用：
+脚本使用运行锁避免重复并发执行，并把输出追加到 `logs/daily_update.log`。只有 `git diff --cached --quiet` 检测到 staged changes 时才会 commit 和 push；push 失败会记录错误并以非零状态退出。提交推送到 GitHub 后，GitHub Pages 会自动从发布分支的 `/docs` 目录更新静态页面。
+
+ECS 每天通过 cron 调用脚本，推荐配置：
 
 ```cron
-0 6 * * * /home/admin/industry-tracker/scripts/daily_update.sh
+0 6 * * * /home/admin/industry-tracker/scripts/daily_update.sh >> /home/admin/industry-tracker/logs/daily_update.log 2>&1
 ```
 
-ECS 如需自动 push，应在服务器外部安全配置 SSH deploy key、Git credential helper 或等价凭证。不要把私钥、token、密码、服务器凭证写入仓库，也不要放入 GitHub Pages 会公开发布的 `docs/` 目录。
+ECS 如需自动 push，应在服务器外部安全配置 SSH deploy key、Git credential helper 或等价凭证。不要把 SSH 私钥、token、密码、服务器地址或其他凭证写入仓库，也不要放入 GitHub Pages 会公开发布的 `docs/` 目录。
+
+服务器侧可用以下命令验证完整链路：
+
+```bash
+cd /home/admin/industry-tracker
+bash scripts/daily_update.sh
+tail -n 100 logs/daily_update.log
+git status
+```
+
+提交前可运行静态发布自检，检查数据完整性、动态 API 隔离和常见敏感凭证特征：
+
+```bash
+python scripts/check_static_publish.py
+```
 
 ## 测试
 

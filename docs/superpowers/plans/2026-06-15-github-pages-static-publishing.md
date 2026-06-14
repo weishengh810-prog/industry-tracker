@@ -388,7 +388,7 @@ python scripts/export_static.py
 - Daily cron runs `scripts/daily_update.sh`.
 - ECS push requires an SSH deploy key or another secure credential configured
   outside the repository.
-- Private keys, tokens, passwords, and server credentials must never be written
+- Authentication secrets and server credentials must never be written
   to tracked files or the public `docs/` directory.
 
 - [ ] **Step 4: Generate the initial public data**
@@ -431,10 +431,10 @@ Run:
 
 ```bash
 rg -n "/api/" docs/index.html
-rg -n "PRIVATE KEY|BEGIN OPENSSH|ghp_|github_pat_|password\\s*=|token\\s*=" docs
+python scripts/check_static_publish.py
 ```
 
-Expected: both commands return no matches.
+Expected: the `rg` command returns no matches and the static publish check passes.
 
 - [ ] **Step 2: Run the complete test suite**
 

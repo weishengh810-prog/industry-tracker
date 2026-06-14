@@ -22,6 +22,27 @@ def test_daily_update_exports_and_conditionally_pushes_static_site():
     assert 'echo "No changes to commit"' in script
 
 
+def test_daily_update_prevents_overlap_and_logs_push_failures():
+    script = SCRIPT_PATH.read_text(encoding="utf-8")
+
+    assert "logs/daily_update.log" in script
+    assert "command -v flock" in script
+    assert "flock -n" in script
+    assert "LOCK_DIR" in script
+    assert "mkdir" in script
+    assert "if ! git push; then" in script
+    assert "git push failed" in script
+    assert "exit 1" in script
+
+
+def test_daily_update_stages_all_publish_outputs():
+    script = SCRIPT_PATH.read_text(encoding="utf-8")
+
+    staging = script[script.index("git add") : script.index("git diff --cached")]
+    for output_dir in ("docs/", "reports/", "charts/", "data/", "archives/"):
+        assert output_dir in staging
+
+
 def test_daily_update_keeps_existing_archive_workflow():
     script = SCRIPT_PATH.read_text(encoding="utf-8")
 

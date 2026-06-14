@@ -189,6 +189,13 @@ def run_pipeline(
     generate_report(scores, report_path=report_path, chart_path=chart_path)
     logger.info("pipeline completed | offline=%s", offline)
 
+    try:
+        from scripts.store_to_db import store_to_db
+
+        store_to_db(project_root / "web" / "industry.db")
+    except Exception as exc:
+        logger.warning(f"store_to_db failed: {exc}")
+
     return {
         "long_table": long_path,
         "momentum": momentum_path,

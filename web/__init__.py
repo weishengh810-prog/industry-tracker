@@ -1,0 +1,1 @@
+"""Industry tracker web application."""

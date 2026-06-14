@@ -20,3 +20,8 @@ logs/*.log
 !reports/.gitkeep
 !charts/.gitkeep
 !logs/.gitkeep
+
+web/industry.db
+web/*.db
+logs/
+archives/

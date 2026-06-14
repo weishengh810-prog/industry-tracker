@@ -6,6 +6,8 @@ cd /home/admin/industry-tracker
 source .venv/bin/activate
 
 python scripts/run_pipeline.py
+python scripts/store_to_db.py
+python scripts/export_static.py
 
 TODAY=$(date +%F)
 ARCHIVE_DIR="archives/${TODAY}"
@@ -37,6 +39,11 @@ git add -f reports/industry_report.md \
   "${ARCHIVE_DIR}" \
   scripts/daily_update.sh
 
-git commit -m "Daily update industry tracker report ${TODAY}" || echo "No changes to commit"
+git add docs/
 
-git push
+if git diff --cached --quiet; then
+  echo "No changes to commit"
+else
+  git commit -m "Daily update industry tracker report ${TODAY}"
+  git push
+fi

@@ -251,6 +251,11 @@
       box-shadow: var(--shadow);
     }
 
+    .rank-card.selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(11, 107, 91, 0.14), var(--shadow);
+    }
+
     .rank-title {
       display: flex;
       align-items: baseline;
@@ -316,6 +321,85 @@
       font-size: 11px;
     }
 
+    .metric-help {
+      position: relative;
+      border: 0;
+      cursor: help;
+    }
+
+    .metric-help::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      z-index: 10;
+      left: 50%;
+      bottom: calc(100% + 9px);
+      width: max-content;
+      max-width: min(280px, 76vw);
+      border-radius: 8px;
+      padding: 9px 11px;
+      color: white;
+      background: var(--ink);
+      box-shadow: var(--shadow);
+      font-size: 12px;
+      line-height: 1.55;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 5px);
+      transition: 160ms ease;
+    }
+
+    .metric-help:hover::after,
+    .metric-help:focus-visible::after {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    .ranking-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .search-input {
+      width: min(360px, 100%);
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 9px 12px;
+      color: var(--ink);
+      background: var(--panel);
+      outline: none;
+      transition: 160ms ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(11, 107, 91, 0.12);
+    }
+
+    .top-n-control {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .top-n-button {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: var(--panel);
+      cursor: pointer;
+      transition: 160ms ease;
+    }
+
+    .top-n-button.active {
+      color: white;
+      border-color: var(--accent);
+      background: var(--accent);
+    }
+
     .empty-state, .error-box {
       border: 1px dashed var(--line);
       border-radius: 16px;
@@ -358,6 +442,19 @@
     .chart-wrap {
       position: relative;
       height: 380px;
+    }
+
+    .detail-transition {
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .chart-fade {
+      opacity: 1;
+      transition: opacity 180ms ease;
+    }
+
+    .chart-fade.updating {
+      opacity: 0.42;
     }
 
     .metric-list {
@@ -405,10 +502,49 @@
       background: var(--accent-soft);
     }
 
-    .loading {
-      padding: 60px 0;
-      color: var(--muted);
-      text-align: center;
+    .skeleton {
+      position: relative;
+      overflow: hidden;
+      color: transparent;
+      background: #e8e4dc;
+    }
+
+    .skeleton::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, 0.68) 48%, transparent 76%);
+      transform: translateX(-100%);
+      animation: skeleton-sweep 1.25s infinite;
+    }
+
+    .skeleton-line {
+      height: 13px;
+      border-radius: 999px;
+    }
+
+    .skeleton-card {
+      min-height: 220px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px;
+      background: var(--panel);
+    }
+
+    .skeleton-card .skeleton-line:nth-child(1) { width: 34%; }
+    .skeleton-card .skeleton-line:nth-child(2) { width: 62%; margin-top: 30px; height: 22px; }
+    .skeleton-card .skeleton-line:nth-child(3) { width: 45%; margin-top: 24px; height: 38px; }
+    .skeleton-card .skeleton-line:nth-child(4) { width: 78%; margin-top: 26px; }
+
+    .chart-skeleton {
+      height: 260px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      margin-top: 18px;
+    }
+
+    @keyframes skeleton-sweep {
+      to { transform: translateX(100%); }
     }
 
     @media (max-width: 900px) {
@@ -416,6 +552,7 @@
       .detail-layout { grid-template-columns: 1fr; }
       .masthead { align-items: flex-start; flex-direction: column; }
       .masthead-note { text-align: left; }
+      .ranking-controls { align-items: stretch; flex-direction: column; }
     }
 
     @media (max-width: 620px) {
@@ -450,9 +587,34 @@
     </nav>
 
     <div class="error-box" x-show="error" x-text="error"></div>
-    <div class="loading" x-show="loading">正在读取最新行业数据...</div>
 
-    <section x-show="!loading && view === 'dashboard'">
+    <section x-show="loading" aria-busy="true" aria-label="正在加载看板数据">
+      <div class="status-strip">
+        <template x-for="index in 3" :key="index">
+          <div class="status-item">
+            <div class="skeleton skeleton-line" style="width: 42%"></div>
+            <div class="skeleton skeleton-line" style="width: 68%; height: 22px; margin-top: 17px"></div>
+          </div>
+        </template>
+      </div>
+      <div class="section-head">
+        <h2>行业排名</h2>
+        <p>正在读取最新行业数据...</p>
+      </div>
+      <div class="ranking-grid">
+        <template x-for="index in 6" :key="index">
+          <div class="skeleton-card">
+            <div class="skeleton skeleton-line"></div>
+            <div class="skeleton skeleton-line"></div>
+            <div class="skeleton skeleton-line"></div>
+            <div class="skeleton skeleton-line"></div>
+          </div>
+        </template>
+      </div>
+      <div class="skeleton chart-skeleton" aria-label="历史图表加载中"></div>
+    </section>
+
+    <section x-show="!loading && view === 'dashboard'" x-transition.opacity.duration.300ms>
       <div class="status-strip">
         <div class="status-item">
           <span class="label">最后更新</span>
@@ -478,33 +640,95 @@
         <p>综合分按最新一期降序排列。点击任意卡片查看该行业的 30 天趋势与指标状态。</p>
       </div>
 
+      <div class="ranking-controls" x-show="ranking.length > 0">
+        <input
+          class="search-input"
+          type="search"
+          placeholder="搜索行业名称"
+          aria-label="搜索行业名称"
+          x-model.trim="searchQuery"
+        >
+        <div class="top-n-control" aria-label="排名数量">
+          <button class="top-n-button" type="button" :class="{ active: topN === '3' }" value="3" @click="topN = '3'">Top 3</button>
+          <button class="top-n-button" type="button" :class="{ active: topN === '5' }" value="5" @click="topN = '5'">Top 5</button>
+          <button class="top-n-button" type="button" :class="{ active: topN === '10' }" value="10" @click="topN = '10'">Top 10</button>
+          <button class="top-n-button" type="button" :class="{ active: topN === 'all' }" value="all" @click="topN = 'all'">全部</button>
+        </div>
+      </div>
+
       <div class="empty-state" x-show="ranking.length === 0">
         数据积累中，预计还需 <strong x-text="meta.days_until_full_mode || 0"></strong> 天进入完整评分模式。
       </div>
 
-      <div class="ranking-grid" x-show="ranking.length > 0">
-        <template x-for="item in ranking" :key="item.industry">
-          <article class="rank-card" tabindex="0" @click="openIndustry(item.industry)" @keydown.enter="openIndustry(item.industry)">
+      <div class="empty-state" x-show="ranking.length > 0 && filteredRanking.length === 0">
+        没有符合当前筛选条件的行业。
+      </div>
+
+      <div class="ranking-grid" x-show="filteredRanking.length > 0">
+        <template x-for="item in filteredRanking" :key="item.industry">
+          <article
+            class="rank-card"
+            :class="{ selected: selectedIndustry === item.industry }"
+            tabindex="0"
+            @click="openIndustry(item.industry)"
+            @keydown.enter="openIndustry(item.industry)"
+          >
             <div class="rank-title">
               <span class="rank-number" x-text="item.ranking ? `NO. ${String(item.ranking).padStart(2, '0')}` : 'PENDING'"></span>
-              <span class="change" :class="changeClass(item.score_change)" x-text="changeText(item.score_change)"></span>
+              <span
+                class="change metric-help"
+                :class="changeClass(item.score_change)"
+                tabindex="0"
+                title="较上期：和上一评分日期相比的排名或得分变化。"
+                data-tooltip="较上期：和上一评分日期相比的排名或得分变化。"
+                x-text="changeText(item.score_change)"
+              ></span>
             </div>
             <h3 class="industry-name" x-text="item.industry"></h3>
             <div class="score-line">
-              <strong class="score" x-show="item.composite_score !== null" x-text="formatNumber(item.composite_score, 2)"></strong>
+              <strong
+                class="score metric-help"
+                x-show="item.composite_score !== null"
+                tabindex="0"
+                title="综合分：当前行业相对动量综合评分。"
+                data-tooltip="综合分：当前行业相对动量综合评分。"
+                x-text="formatNumber(item.composite_score, 2)"
+              ></strong>
               <strong class="score pending" x-show="item.composite_score === null">数据积累中</strong>
             </div>
             <div class="metric-tags">
-              <span class="tag" x-text="`资本动量 ${formatNumber(item.capital_momentum_score, 1)}`"></span>
-              <span class="tag" x-text="`技术活跃度 ${formatNumber(item.tech_activity_score, 1)}`"></span>
-              <span class="tag" x-text="`外部信号 ${formatNumber(item.external_signal_score, 1)}`"></span>
+              <span
+                class="tag metric-help"
+                tabindex="0"
+                title="资本动量：市场代理指标形成的相对动量。"
+                data-tooltip="资本动量：市场代理指标形成的相对动量。"
+                x-text="`资本动量 ${formatNumber(item.capital_momentum_score, 1)}`"
+              ></span>
+              <span
+                class="tag metric-help"
+                tabindex="0"
+                title="技术活跃度：arXiv / GitHub 等技术信号形成的相对动量。"
+                data-tooltip="技术活跃度：arXiv / GitHub 等技术信号形成的相对动量。"
+                x-text="`技术活跃度 ${formatNumber(item.tech_activity_score, 1)}`"
+              ></span>
+              <span
+                class="tag metric-help"
+                tabindex="0"
+                title="外部信号：目前仅辅助观察，不一定参与主评分。"
+                data-tooltip="外部信号：目前仅辅助观察，不一定参与主评分。"
+                x-text="`外部信号 ${formatNumber(item.external_signal_score, 1)}`"
+              ></span>
             </div>
           </article>
         </template>
       </div>
     </section>
 
-    <section x-show="!loading && view === 'detail'">
+    <section
+      class="detail-transition"
+      x-show="!loading && view === 'detail'"
+      x-transition.opacity.scale.98.duration.220ms
+    >
       <button class="back" @click="showDashboard()">← 返回主看板</button>
       <div class="section-head">
         <h2 x-text="selectedIndustry || '行业详情'"></h2>
@@ -514,7 +738,12 @@
       <div class="detail-layout">
         <div class="panel">
           <span class="label">过去 30 天综合分趋势</span>
-          <div class="chart-wrap"><canvas id="detailChart"></canvas></div>
+          <div class="empty-state" x-show="!hasDetailHistoryData">
+            暂无足够的行业历史评分数据。
+          </div>
+          <div class="chart-wrap chart-fade" :class="{ updating: chartUpdating }" x-show="hasDetailHistoryData">
+            <canvas id="detailChart"></canvas>
+          </div>
         </div>
         <div class="panel">
           <span class="label">最新指标状态</span>
@@ -535,7 +764,7 @@
       </div>
     </section>
 
-    <section x-show="!loading && view === 'history'">
+    <section x-show="!loading && view === 'history'" x-transition.opacity.duration.260ms>
       <div class="section-head">
         <h2>历史对比</h2>
         <p>历史不足 28 天时综合分可能为空，折线图仅显示有效数据点。</p>
@@ -549,7 +778,12 @@
         </template>
       </div>
       <div class="panel">
-        <div class="chart-wrap"><canvas id="historyChart"></canvas></div>
+        <div class="empty-state" x-show="!hasEnoughHistoryData">
+          历史数据仍在积累中。当前有效数据点不足，折线图将在更多每日归档生成后自动显示。
+        </div>
+        <div class="chart-wrap chart-fade" x-show="hasEnoughHistoryData">
+          <canvas id="historyChart"></canvas>
+        </div>
       </div>
     </section>
   </main>
@@ -566,12 +800,39 @@
         detail: { latest_metrics: [], score_history_30d: [], metric_history_30d: [] },
         selectedIndustry: "",
         selectedIndustries: [],
+        searchQuery: "",
+        topN: "all",
+        chartUpdating: false,
         detailChart: null,
         historyChart: null,
         colors: ["#0b6b5b", "#c66a36", "#385f86", "#8a5b78", "#7d7b36", "#aa3f34", "#4b8178", "#7c664d"],
 
         get industries() {
           return [...new Set(this.history.map(row => row.industry))].sort((a, b) => a.localeCompare(b, "zh-CN"));
+        },
+
+        get filteredRanking() {
+          const query = this.searchQuery.trim().toLocaleLowerCase("zh-CN");
+          const matches = query
+            ? this.ranking.filter(item => item.industry.toLocaleLowerCase("zh-CN").includes(query))
+            : this.ranking;
+          return this.topN === "all" ? matches : matches.slice(0, Number(this.topN));
+        },
+
+        get hasDetailHistoryData() {
+          return (this.detail.score_history_30d || []).some(
+            row => row.composite_score !== null && Number.isFinite(Number(row.composite_score))
+          );
+        },
+
+        get hasEnoughHistoryData() {
+          return this.selectedIndustries.some(industry => (
+            this.history.filter(row => (
+              row.industry === industry
+              && row.composite_score !== null
+              && Number.isFinite(Number(row.composite_score))
+            )).length >= 2
+          ));
         },
 
         async init() {
@@ -593,7 +854,7 @@
               .map(item => item.industry);
             this.selectedIndustries = ranked.length ? ranked : this.industries.slice(0, 5);
           } catch (error) {
-            this.error = `数据读取失败：${error.message}`;
+            this.error = `数据加载失败，请稍后刷新页面：${error.message}`;
           } finally {
             this.loading = false;
           }
@@ -678,16 +939,18 @@
 
         loadIndustry() {
           this.error = "";
+          this.chartUpdating = true;
           const rankingItem = this.ranking.find(
             item => item.industry === this.selectedIndustry
           );
           if (!rankingItem) {
             this.error = "行业详情不存在";
+            this.chartUpdating = false;
             return;
           }
-          const dailyMetrics = rankingItem.latest_metrics.daily_metrics || [];
+          const dailyMetrics = rankingItem.latest_metrics?.daily_metrics || [];
           const momentumFeatures =
-            rankingItem.latest_metrics.momentum_features || [];
+            rankingItem.latest_metrics?.momentum_features || [];
           const momentumByMetric = new Map(
             momentumFeatures.map(item => [item.metric, item])
           );
@@ -703,14 +966,23 @@
             score_history_30d: scoreHistory,
             metric_history_30d: []
           };
-          this.$nextTick(() => this.renderDetailChart());
+          this.$nextTick(() => {
+            this.renderDetailChart();
+            requestAnimationFrame(() => {
+              this.chartUpdating = false;
+            });
+          });
         },
 
         renderDetailChart() {
           const canvas = document.getElementById("detailChart");
-          if (!canvas) return;
+          if (!canvas || typeof Chart === "undefined") return;
           if (this.detailChart) this.detailChart.destroy();
           const rows = this.detail.score_history_30d || [];
+          if (!this.hasDetailHistoryData) {
+            this.detailChart = null;
+            return;
+          }
           const datasets = [
             {
               label: "综合分",
@@ -756,18 +1028,23 @@
               labels: rows.map(row => row.date),
               datasets
             },
-            options: this.chartOptions("综合分")
+            options: this.chartOptions("综合分", "detail")
           });
         },
 
         renderHistoryChart() {
           const canvas = document.getElementById("historyChart");
           if (!canvas || typeof Chart === "undefined") return;
-          if (this.historyChart) this.historyChart.destroy();
-          const dates = [...new Set(this.history.map(row => row.date))].sort();
+          if (this.historyChart) {
+            this.historyChart.destroy();
+            this.historyChart = null;
+          }
+          if (!this.hasEnoughHistoryData) return;
+          const visibleRows = this.history.filter(row => this.selectedIndustries.includes(row.industry));
+          const dates = [...new Set(visibleRows.map(row => row.date))].sort();
           const datasets = this.selectedIndustries.map((industry, index) => {
             const byDate = new Map(
-              this.history
+              visibleRows
                 .filter(row => row.industry === industry && row.composite_score !== null)
                 .map(row => [row.date, row.composite_score])
             );
@@ -781,27 +1058,63 @@
               tension: 0.24,
               spanGaps: false
             };
-          });
+          }).filter(dataset => dataset.data.some(value => value !== null));
           this.historyChart = new Chart(canvas, {
             type: "line",
             data: { labels: dates, datasets },
-            options: this.chartOptions("综合分")
+            options: this.chartOptions("综合分", "history")
           });
         },
 
-        chartOptions(yTitle) {
+        tooltipRows(row, label) {
+          return [
+            label,
+            `综合分：${this.formatTooltipValue(row?.composite_score, 2)}`,
+            `资本动量：${this.formatTooltipValue(row?.capital_momentum_score, 1)}`,
+            `技术活跃度：${this.formatTooltipValue(row?.tech_activity_score, 1)}`,
+            `排名：${this.formatTooltipValue(row?.ranking, 0)}`
+          ];
+        },
+
+        chartOptions(yTitle, chartType) {
           return {
             responsive: true,
             maintainAspectRatio: false,
             interaction: { mode: "index", intersect: false },
             plugins: {
-              legend: { position: "bottom", labels: { usePointStyle: true, boxWidth: 8 } }
+              legend: { position: "bottom", labels: { usePointStyle: true, boxWidth: 8 } },
+              tooltip: {
+                callbacks: {
+                  title: items => `日期：${items[0]?.label || "暂无数据"}`,
+                  beforeBody: items => {
+                    const context = items[0];
+                    const date = context.label;
+                    const row = chartType === "detail"
+                      ? (this.detail.score_history_30d || []).find(item => item.date === date)
+                      : this.history.find(item => (
+                        item.date === date && item.industry === context.dataset.label
+                      ));
+                    const label = chartType === "detail"
+                      ? this.selectedIndustry
+                      : context.dataset.label;
+                    return this.tooltipRows(row, label);
+                  },
+                  label: () => null
+                }
+              }
             },
             scales: {
               x: { grid: { display: false }, title: { display: true, text: "日期" } },
               y: { beginAtZero: false, title: { display: true, text: yTitle } }
             }
           };
+        },
+
+        formatTooltipValue(value, digits) {
+          if (value === null || value === undefined || !Number.isFinite(Number(value))) {
+            return "暂无数据";
+          }
+          return Number(value).toFixed(digits);
         },
 
         formatNumber(value, digits = 1) {

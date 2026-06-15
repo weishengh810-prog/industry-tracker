@@ -224,6 +224,40 @@ def test_meta_reports_trial_mode(web_client):
     assert response.json()["archive_days"] == 1
 
 
+def test_meta_counts_current_data_as_twenty_eighth_day(web_client):
+    client, db_path, root = web_client
+    _execute(
+        db_path,
+        """
+        INSERT INTO industry_scores (
+            date, industry, composite_score, ranking, ranking_status
+        ) VALUES (?, ?, ?, ?, ?)
+        """,
+        [("2026-05-28", "人工智能", 85.0, 1, "ranked")],
+    )
+    archive_dates = pd.date_range(
+        "2026-05-01",
+        periods=27,
+        freq="D",
+    ).strftime("%Y-%m-%d")
+    for archive_date in archive_dates:
+        (root / "archives" / archive_date).mkdir(parents=True)
+    current_path = (
+        root / "data" / "processed" / "industry_metrics_long.csv"
+    )
+    current_path.parent.mkdir(parents=True)
+    pd.DataFrame({"date": ["2026-05-28"]}).to_csv(
+        current_path,
+        index=False,
+    )
+
+    response = client.get("/api/meta")
+
+    assert response.status_code == 200
+    assert response.json()["archive_days"] == 28
+    assert response.json()["days_until_full_mode"] == 0
+
+
 def test_download_latest_uses_bom_and_data_date_filename(web_client):
     client, _, root = web_client
     path = root / "data" / "processed" / "industry_metrics_long.csv"

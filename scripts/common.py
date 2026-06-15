@@ -79,8 +79,41 @@ def is_valid_archive_date(value: str) -> bool:
     return True
 
 
-def archive_days(root: Path = PROJECT_ROOT) -> int:
-    return len(valid_archive_dates(root))
+def current_pipeline_date(root: Path = PROJECT_ROOT) -> str | None:
+    current_path = (
+        Path(root)
+        / "data"
+        / "processed"
+        / "industry_metrics_long.csv"
+    )
+    if not current_path.exists():
+        return None
+
+    try:
+        current = pd.read_csv(current_path, encoding="utf-8-sig")
+    except pd.errors.EmptyDataError:
+        return None
+    if "date" not in current:
+        return None
+
+    valid_dates = {
+        str(value).strip()
+        for value in current["date"].dropna()
+        if is_valid_archive_date(str(value).strip())
+    }
+    return max(valid_dates, default=None)
+
+
+def history_dates(root: Path = PROJECT_ROOT) -> list[str]:
+    dates = set(valid_archive_dates(root))
+    current_date = current_pipeline_date(root)
+    if current_date is not None:
+        dates.add(current_date)
+    return sorted(dates)
+
+
+def history_days(root: Path = PROJECT_ROOT) -> int:
+    return len(history_dates(root))
 
 
 def ranking_mode_from_statuses(statuses: Iterable[str]) -> str:

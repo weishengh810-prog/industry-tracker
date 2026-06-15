@@ -10,7 +10,7 @@ from pathlib import Path
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from scripts.common import archive_days, ranking_mode_from_statuses
+from scripts.common import history_days, ranking_mode_from_statuses
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DB_PATH = PROJECT_ROOT / "web" / "industry.db"
@@ -198,13 +198,13 @@ def _meta(db_path: Path, project_root: Path) -> dict[str, object]:
         row["ranking_status"] for row in score_rows
     )
 
-    history_days = archive_days(project_root)
+    data_days = history_days(project_root)
     return {
         "last_updated": last_updated,
         "ranking_mode": ranking_mode,
         "insufficient_industries": insufficient,
-        "archive_days": history_days,
-        "days_until_full_mode": max(0, 28 - history_days),
+        "archive_days": data_days,
+        "days_until_full_mode": max(0, 28 - data_days),
     }
 
 

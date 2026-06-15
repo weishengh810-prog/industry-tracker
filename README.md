@@ -100,7 +100,8 @@ daily 状态白名单：
 
 ## 评分
 
-`scripts/run_pipeline.py` 统计有效归档目录并把 `history_days` 传给评分器：
+`scripts/run_pipeline.py` 统计有效归档日期与当前数据日期的并集，并把
+`history_days` 传给评分器；当天已归档时通过集合去重，不会重复计数：
 
 - `history_days < 28`：进入 `试运行评分模式`。每个主指标优先使用有效 `growth_rate_4w`；某行业的该指标增长率不可用时，回退到最新截面值。
 - `history_days >= 28`：进入正式 momentum 阶段，只允许使用有效 `growth_rate_4w`，不再回退到最新截面值。

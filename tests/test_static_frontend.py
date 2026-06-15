@@ -118,6 +118,7 @@ def test_readme_documents_dynamic_and_static_deployment():
     assert "git status" in readme
     assert "试运行评分模式" in readme
     assert "history_days < 28" in readme
+    assert "有效归档日期与当前数据日期的并集" in readme
     assert "最新截面值" in readme
     assert "每个指标独立计算行业截面百分位" in readme
     assert "不再回退到最新截面值" in readme

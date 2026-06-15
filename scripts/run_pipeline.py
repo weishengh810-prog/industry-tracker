@@ -17,8 +17,8 @@ from scripts.common import (
     LONG_COLUMNS,
     PROJECT_ROOT,
     SAMPLES_DIR,
-    archive_days,
     ensure_directories,
+    history_days,
     load_industries,
     setup_logging,
     write_csv,
@@ -186,7 +186,7 @@ def run_pipeline(
         long_frame,
         momentum_frame=momentum_frame,
         output_path=score_path,
-        history_days=archive_days(project_root),
+        history_days=history_days(project_root),
     )
     generate_report(scores, report_path=report_path, chart_path=chart_path)
     logger.info("pipeline completed | offline=%s", offline)

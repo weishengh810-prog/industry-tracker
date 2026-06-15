@@ -27,9 +27,11 @@ contract, and primary dimension weights remain unchanged.
 
 ## History-Day Source
 
-`scripts/run_pipeline.py` counts valid archive directories named
-`YYYY-MM-DD` under `archives/` and passes that count as `history_days` to
-`score_industries()`.
+`scripts/run_pipeline.py` unions valid archive directories named `YYYY-MM-DD`
+under `archives/` with the maximum current date in
+`data/processed/industry_metrics_long.csv`, then passes that count as
+`history_days` to `score_industries()`. Set union prevents double-counting when
+the current date is already archived.
 
 The threshold is:
 

@@ -77,12 +77,17 @@ def test_offline_pipeline_generates_all_outputs(tmp_path):
     assert "trial" in set(scores["ranking_status"])
 
 
-def test_pipeline_passes_valid_archive_day_count_to_scoring(
+def test_pipeline_passes_archive_union_current_day_count_to_scoring(
     tmp_path,
     monkeypatch,
 ):
     archives = tmp_path / "archives"
-    for name in ("2026-06-01", "2026-06-02", "2026-6-3", "notes"):
+    archive_dates = pd.date_range(
+        "2025-01-01",
+        periods=27,
+        freq="D",
+    ).strftime("%Y-%m-%d")
+    for name in (*archive_dates, "2026-6-3", "notes"):
         (archives / name).mkdir(parents=True)
     captured = {}
 
@@ -107,7 +112,7 @@ def test_pipeline_passes_valid_archive_day_count_to_scoring(
 
     run_pipeline(offline=True, project_root=tmp_path)
 
-    assert captured["history_days"] == 2
+    assert captured["history_days"] == 28
 
 
 def test_new_collector_crash_does_not_stop_offline_pipeline(

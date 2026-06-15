@@ -258,3 +258,34 @@ def test_export_static_reports_trial_mode_from_latest_score_rows(tmp_path):
     assert meta["ranking_mode"] == "试运行评分模式"
     assert meta["archive_days"] == 2
     assert {row["ranking_status"] for row in ranking} == {"trial"}
+
+
+def test_export_static_counts_current_data_as_twenty_eighth_day(tmp_path):
+    db_path = tmp_path / "web" / "industry.db"
+    output_dir = tmp_path / "docs" / "data"
+    _create_database(db_path)
+    archive_dates = pd.date_range(
+        "2026-05-01",
+        periods=27,
+        freq="D",
+    ).strftime("%Y-%m-%d")
+    for archive_date in archive_dates:
+        (tmp_path / "archives" / archive_date).mkdir(parents=True)
+    current_path = (
+        tmp_path / "data" / "processed" / "industry_metrics_long.csv"
+    )
+    current_path.parent.mkdir(parents=True)
+    pd.DataFrame({"date": ["2026-05-28"]}).to_csv(
+        current_path,
+        index=False,
+    )
+
+    outputs = export_static(
+        db_path,
+        output_dir=output_dir,
+        project_root=tmp_path,
+    )
+
+    meta = json.loads(outputs["meta"].read_text(encoding="utf-8"))
+    assert meta["archive_days"] == 28
+    assert meta["days_until_full_mode"] == 0

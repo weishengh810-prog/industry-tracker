@@ -10,6 +10,7 @@ from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.responses import FileResponse, Response
 
 from scripts.common import (
+    history_days,
     is_valid_archive_date,
     ranking_mode_from_statuses,
     valid_archive_dates,
@@ -304,13 +305,13 @@ def create_app(
             row["ranking_status"] for row in score_rows
         )
 
-        archive_days = len(_archive_dates(root))
+        data_days = history_days(root)
         return {
             "last_updated": last_updated,
             "ranking_mode": ranking_mode,
             "insufficient_industries": insufficient,
-            "archive_days": archive_days,
-            "days_until_full_mode": max(0, 28 - archive_days),
+            "archive_days": data_days,
+            "days_until_full_mode": max(0, 28 - data_days),
         }
 
     @application.api_route(

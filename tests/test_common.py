@@ -1,5 +1,9 @@
 import logging
 
+import pandas as pd
+import pytest
+
+import scripts.common as common
 from scripts.common import (
     LONG_COLUMNS,
     VALID_METRICS,
@@ -151,3 +155,75 @@ def test_ensure_directories_creates_cache_directory(tmp_path):
     ensure_directories(tmp_path)
 
     assert (tmp_path / "data" / "cache").is_dir()
+
+
+def _create_archive_dates(root, dates):
+    for archive_date in dates:
+        (root / "archives" / archive_date).mkdir(parents=True)
+
+
+def _write_current_data(root, frame):
+    path = root / "data" / "processed" / "industry_metrics_long.csv"
+    path.parent.mkdir(parents=True)
+    frame.to_csv(path, index=False)
+
+
+def test_history_days_unions_27_archives_with_current_pipeline_date(tmp_path):
+    archive_dates = pd.date_range(
+        "2026-05-01",
+        periods=27,
+        freq="D",
+    ).strftime("%Y-%m-%d")
+    _create_archive_dates(tmp_path, archive_dates)
+    _write_current_data(
+        tmp_path,
+        pd.DataFrame({"date": ["2026-05-28", "2026-05-28"]}),
+    )
+
+    assert common.current_pipeline_date(tmp_path) == "2026-05-28"
+    assert common.history_days(tmp_path) == 28
+
+
+def test_history_days_does_not_duplicate_already_archived_current_date(
+    tmp_path,
+):
+    _create_archive_dates(
+        tmp_path,
+        ["2026-05-27", "2026-05-28"],
+    )
+    _write_current_data(
+        tmp_path,
+        pd.DataFrame({"date": ["2026-05-28"]}),
+    )
+
+    assert common.history_days(tmp_path) == 2
+
+
+def test_history_days_ignores_non_iso_archive_directories(tmp_path):
+    _create_archive_dates(
+        tmp_path,
+        ["2026-05-27", "2026-5-28", "notes", "2026-02-30"],
+    )
+
+    assert common.history_days(tmp_path) == 1
+
+
+@pytest.mark.parametrize(
+    "frame",
+    [
+        pd.DataFrame(),
+        pd.DataFrame({"industry": ["人工智能"]}),
+    ],
+)
+def test_history_days_uses_only_archives_when_current_data_has_no_date(
+    tmp_path,
+    frame,
+):
+    _create_archive_dates(
+        tmp_path,
+        ["2026-05-27", "2026-05-28"],
+    )
+    _write_current_data(tmp_path, frame)
+
+    assert common.current_pipeline_date(tmp_path) is None
+    assert common.history_days(tmp_path) == 2

@@ -92,6 +92,7 @@ def generate_report(
     generated_at = datetime.now().astimezone().strftime("%Y-%m-%d %H:%M:%S %Z")
     data_dates = sorted(scores.get("data_date", pd.Series(dtype=object)).dropna().astype(str).unique())
     scoring_mode = _unique_text(scores, "scoring_mode") or "历史数据不足，暂不排名"
+    trial_mode = "试运行评分模式" in scoring_mode
     excluded_metrics = _unique_text(scores, "excluded_metrics") or "无"
     ranked = scores.dropna(subset=["composite_score"]).copy()
 
@@ -131,6 +132,24 @@ def generate_report(
     ]
     if not top_lines:
         top_lines = ["- 当前暂无可排名行业。"]
+    mode_notice = (
+        "试运行评分 / 历史不足，仅供观察"
+        if trial_mode
+        else "正式评分仅使用有效 `growth_rate_4w`。"
+    )
+    method_lines = (
+        [
+            "- 历史不足 28 天时进入试运行评分：优先使用有效 `growth_rate_4w`，"
+            "不可用时回退到最新截面值。",
+            "- 每个底层指标独立计算行业截面百分位，不直接相加不同量纲的原始值。",
+        ]
+        if trial_mode
+        else [
+            "- 正式评分只使用有效 `growth_rate_4w`，不回退到当期绝对值。",
+            "- 任一底层指标至少 3 个行业的 `momentum_status=ok` "
+            "才能进入截面百分位。",
+        ]
+    )
 
     volume = scores[
         scores.get(
@@ -160,6 +179,7 @@ def generate_report(
             f"- 生成时间：{generated_at}",
             f"- 数据日期：{', '.join(data_dates) if data_dates else '见评分表'}",
             f"- 当前评分模式：{scoring_mode}",
+            f"- 模式说明：{mode_notice}",
             f"- 未进入主评分的指标：{excluded_metrics}",
             "",
             "## 行业排名",
@@ -188,8 +208,7 @@ def generate_report(
             "",
             "## 方法说明",
             "",
-            "- 主评分只使用 `growth_rate_4w`，不使用新闻、政策或当期绝对规模回退。",
-            "- 任一底层指标至少 3 个行业的 `momentum_status=ok` 才能进入截面百分位。",
+            *method_lines,
             "- `capital_momentum` 权重 35%，由 `market_return_3m` 和 `market_return_4w` 构成。",
             "- `tech_activity` 权重 65%，由 `arxiv_paper_count_4w` 和 `github_repo_count_4w` 构成。",
             "- 某个指标历史不足只排除该指标；可用维度按原始权重重新归一化。",

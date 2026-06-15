@@ -42,9 +42,12 @@ MOMENTUM_REQUIRED_COLUMNS = {
     "momentum_status",
 }
 MIN_ELIGIBLE_INDUSTRIES = 3
+TRIAL_HISTORY_DAYS = 28
+USABLE_DAILY_STATUSES = {"ok", "sample", "no_match"}
 
 COMPLETE_MODE = "完整 momentum 模式"
 PARTIAL_MODE = "部分 momentum 模式"
+TRIAL_MODE = "试运行评分模式"
 INSUFFICIENT_MODE = "历史数据不足，暂不排名"
 
 
@@ -90,6 +93,7 @@ def _add_metric_columns(
     result: pd.DataFrame,
     latest: pd.DataFrame,
     momentum: pd.DataFrame,
+    trial_mode: bool,
 ) -> list[str]:
     excluded_metrics = []
 
@@ -127,16 +131,51 @@ def _add_metric_columns(
         if metric not in PRIMARY_METRICS:
             continue
 
-        eligible = statuses.eq("ok").fillna(False) & np.isfinite(growth)
-        eligible_growth = growth.where(eligible).dropna()
         score_column = f"{metric}_score"
+        source_column = f"{metric}_score_source"
         result[score_column] = np.nan
-        if eligible_growth.index.nunique() < MIN_ELIGIBLE_INDUSTRIES:
+        result[source_column] = "unavailable"
+
+        growth_values = result[f"{metric}_growth_rate_4w"]
+        growth_statuses = result[f"{metric}_momentum_status"]
+        growth_eligible = growth_statuses.eq("ok") & np.isfinite(
+            growth_values
+        )
+        selected_values = growth_values.where(growth_eligible)
+        selected_sources = pd.Series(
+            np.where(growth_eligible, "growth_rate_4w", "unavailable"),
+            index=result.index,
+            dtype=object,
+        )
+
+        if trial_mode:
+            daily_values = result[metric]
+            daily_statuses = result[f"{metric}_status"]
+            daily_eligible = daily_statuses.isin(
+                USABLE_DAILY_STATUSES
+            ) & np.isfinite(daily_values)
+            fallback = ~growth_eligible & daily_eligible
+            selected_values = selected_values.where(
+                ~fallback,
+                daily_values,
+            )
+            selected_sources = selected_sources.where(
+                ~fallback,
+                "latest_value",
+            )
+
+        eligible_values = selected_values.dropna()
+        if eligible_values.index.nunique() < MIN_ELIGIBLE_INDUSTRIES:
             excluded_metrics.append(metric)
             continue
 
-        percentiles = eligible_growth.rank(method="average", pct=True) * 100
-        result[score_column] = result["industry"].map(percentiles)
+        result[score_column] = (
+            eligible_values.rank(method="average", pct=True) * 100
+        )
+        result[source_column] = selected_sources.where(
+            selected_values.notna(),
+            "unavailable",
+        )
 
     return excluded_metrics
 
@@ -168,6 +207,7 @@ def _add_dimension_scores(result: pd.DataFrame) -> None:
 def _add_status_columns(
     result: pd.DataFrame,
     excluded_metrics: list[str],
+    trial_mode: bool,
 ) -> None:
     excluded = ";".join(excluded_metrics)
     result["excluded_metrics"] = excluded
@@ -197,6 +237,8 @@ def _add_status_columns(
     ].notna().all(axis=1).all()
     if not has_ranking:
         mode = INSUFFICIENT_MODE
+    elif trial_mode:
+        mode = TRIAL_MODE
     elif all_metrics_comparable and all_industries_have_both_dimensions:
         mode = COMPLETE_MODE
     else:
@@ -206,7 +248,11 @@ def _add_status_columns(
     result["ranking_status"] = np.where(
         result["composite_score"].isna(),
         "insufficient_history",
-        "ranked" if mode == COMPLETE_MODE else "partial",
+        np.where(
+            mode == TRIAL_MODE,
+            "trial",
+            "ranked" if mode == COMPLETE_MODE else "partial",
+        ),
     )
 
 
@@ -235,7 +281,12 @@ def _ordered_columns() -> list[str]:
             ]
         )
         if metric in PRIMARY_METRICS:
-            columns.append(f"{metric}_score")
+            columns.extend(
+                [
+                    f"{metric}_score",
+                    f"{metric}_score_source",
+                ]
+            )
     columns.extend(
         [
             "excluded_metrics",
@@ -252,6 +303,7 @@ def score_industries(
     long_frame: pd.DataFrame,
     momentum_frame: pd.DataFrame | None = None,
     output_path: Path | None = None,
+    history_days: int = TRIAL_HISTORY_DAYS,
 ) -> pd.DataFrame:
     if long_frame.empty:
         raise ValueError("Cannot score an empty long table")
@@ -262,10 +314,16 @@ def score_industries(
         {"industry": sorted(latest["industry"].dropna().unique())}
     )
     result["data_date"] = latest["date"].max().date().isoformat()
+    trial_mode = history_days < TRIAL_HISTORY_DAYS
 
-    excluded_metrics = _add_metric_columns(result, latest, momentum)
+    excluded_metrics = _add_metric_columns(
+        result,
+        latest,
+        momentum,
+        trial_mode,
+    )
     _add_dimension_scores(result)
-    _add_status_columns(result, excluded_metrics)
+    _add_status_columns(result, excluded_metrics, trial_mode)
 
     result["rank"] = (
         result["composite_score"]
@@ -302,6 +360,12 @@ def main() -> None:
         type=Path,
         default=REPORTS_DIR / "industry_score.csv",
     )
+    parser.add_argument(
+        "--history-days",
+        type=int,
+        default=TRIAL_HISTORY_DAYS,
+        help="Valid archive-day count; values below 28 enable trial scoring.",
+    )
     args = parser.parse_args()
 
     momentum_frame = (
@@ -311,6 +375,7 @@ def main() -> None:
         pd.read_csv(args.input),
         momentum_frame=momentum_frame,
         output_path=args.output,
+        history_days=args.history_days,
     )
 
 

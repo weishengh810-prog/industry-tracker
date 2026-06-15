@@ -5,12 +5,12 @@ import csv
 import json
 import sqlite3
 import sys
-from datetime import datetime
 from pathlib import Path
 
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from scripts.common import archive_days, ranking_mode_from_statuses
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DB_PATH = PROJECT_ROOT / "web" / "industry.db"
@@ -165,24 +165,6 @@ def _latest_ranking(
     return latest_rows
 
 
-def _valid_archive_date(value: str) -> bool:
-    try:
-        return datetime.strptime(value, "%Y-%m-%d").strftime("%Y-%m-%d") == value
-    except ValueError:
-        return False
-
-
-def _archive_days(project_root: Path) -> int:
-    archives_dir = project_root / "archives"
-    if not archives_dir.exists():
-        return 0
-    return sum(
-        1
-        for path in archives_dir.iterdir()
-        if path.is_dir() and _valid_archive_date(path.name)
-    )
-
-
 def _meta(db_path: Path, project_root: Path) -> dict[str, object]:
     latest_dates = [
         _scalar(db_path, f"SELECT MAX(date) FROM {table}")
@@ -212,20 +194,17 @@ def _meta(db_path: Path, project_root: Path) -> dict[str, object]:
         for row in score_rows
         if row["ranking_status"] == "insufficient_history"
     ]
-    if not score_rows or len(insufficient) == len(score_rows):
-        ranking_mode = "历史数据不足"
-    elif insufficient:
-        ranking_mode = "部分回退模式"
-    else:
-        ranking_mode = "完整 momentum 模式"
+    ranking_mode = ranking_mode_from_statuses(
+        row["ranking_status"] for row in score_rows
+    )
 
-    archive_days = _archive_days(project_root)
+    history_days = archive_days(project_root)
     return {
         "last_updated": last_updated,
         "ranking_mode": ranking_mode,
         "insufficient_industries": insufficient,
-        "archive_days": archive_days,
-        "days_until_full_mode": max(0, 28 - archive_days),
+        "archive_days": history_days,
+        "days_until_full_mode": max(0, 28 - history_days),
     }
 
 
@@ -241,7 +220,11 @@ def _write_history(
     history: list[dict[str, object]],
 ) -> None:
     with path.open("w", encoding="utf-8-sig", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=HISTORY_COLUMNS)
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=HISTORY_COLUMNS,
+            lineterminator="\n",
+        )
         writer.writeheader()
         writer.writerows(history)
 

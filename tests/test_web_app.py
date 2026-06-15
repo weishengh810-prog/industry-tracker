@@ -194,11 +194,34 @@ def test_meta_reports_partial_mode_and_archive_progress(web_client):
     assert response.status_code == 200
     assert response.json() == {
         "last_updated": "2026-06-14",
-        "ranking_mode": "部分回退模式",
+        "ranking_mode": "部分 momentum 模式",
         "insufficient_industries": ["半导体"],
         "archive_days": 2,
         "days_until_full_mode": 26,
     }
+
+
+def test_meta_reports_trial_mode(web_client):
+    client, db_path, root = web_client
+    _execute(
+        db_path,
+        """
+        INSERT INTO industry_scores (
+            date, industry, composite_score, ranking, ranking_status
+        ) VALUES (?, ?, ?, ?, ?)
+        """,
+        [
+            ("2026-06-13", "人工智能", 85.0, 1, "trial"),
+            ("2026-06-13", "半导体", 80.0, 2, "trial"),
+        ],
+    )
+    (root / "archives" / "2026-06-12").mkdir(parents=True)
+
+    response = client.get("/api/meta")
+
+    assert response.status_code == 200
+    assert response.json()["ranking_mode"] == "试运行评分模式"
+    assert response.json()["archive_days"] == 1
 
 
 def test_download_latest_uses_bom_and_data_date_filename(web_client):

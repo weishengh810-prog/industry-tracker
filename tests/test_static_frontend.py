@@ -61,6 +61,14 @@ def test_static_dashboard_has_bi_loading_filter_and_empty_states():
     assert "hasEnoughHistoryData" in html
 
 
+def test_static_dashboard_discloses_trial_mode_and_keeps_progress():
+    html = INDEX_PATH.read_text(encoding="utf-8")
+
+    assert "试运行评分 / 历史不足，仅供观察" in html
+    assert "meta.ranking_mode === '试运行评分模式'" in html
+    assert "`${meta.archive_days || 0} / 28 天`" in html
+
+
 def test_static_dashboard_explains_metrics_and_chart_tooltips():
     html = INDEX_PATH.read_text(encoding="utf-8")
 
@@ -108,3 +116,10 @@ def test_readme_documents_dynamic_and_static_deployment():
     assert "bash scripts/daily_update.sh" in readme
     assert "tail -n 100 logs/daily_update.log" in readme
     assert "git status" in readme
+    assert "试运行评分模式" in readme
+    assert "history_days < 28" in readme
+    assert "最新截面值" in readme
+    assert "每个指标独立计算行业截面百分位" in readme
+    assert "不再回退到最新截面值" in readme
+    assert "完整 momentum 模式" in readme
+    assert "部分 momentum 模式" in readme

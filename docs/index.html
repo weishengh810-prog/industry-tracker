@@ -150,6 +150,24 @@
       font-weight: 700;
     }
 
+    .trial-notice {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 14px;
+      padding: 14px 18px;
+      border: 1px solid rgba(198, 106, 54, 0.35);
+      border-radius: 14px;
+      color: #7d4425;
+      background: rgba(255, 238, 219, 0.72);
+    }
+
+    .trial-notice span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
     .download-row {
       display: flex;
       flex-wrap: wrap;
@@ -629,6 +647,15 @@
           <strong class="status-value" x-text="`${meta.archive_days || 0} / 28 天`"></strong>
           <div class="progress-note" x-show="meta.days_until_full_mode > 0" x-text="`距完整模式还需 ${meta.days_until_full_mode} 天`"></div>
         </div>
+      </div>
+      <div
+        class="trial-notice"
+        x-show="meta.ranking_mode === '试运行评分模式'"
+        x-transition.opacity.duration.250ms
+        role="status"
+      >
+        <strong>试运行评分 / 历史不足，仅供观察</strong>
+        <span>主指标优先使用有效增长率，不足时使用最新截面值独立计算行业百分位。</span>
       </div>
 
       <div class="download-row">

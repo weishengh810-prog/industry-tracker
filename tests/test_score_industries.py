@@ -32,6 +32,7 @@ PRIMARY_METRICS = [
 def make_daily(
     values: dict[str, dict[str, float | None]],
     dates: dict[str, str] | None = None,
+    statuses: dict[tuple[str, str], str] | None = None,
 ) -> pd.DataFrame:
     rows = []
     for metric, industry_values in values.items():
@@ -43,7 +44,7 @@ def make_daily(
                     metric,
                     value,
                     "test",
-                    "ok",
+                    (statuses or {}).get((industry, metric), "ok"),
                 ]
             )
     return pd.DataFrame(rows, columns=LONG_COLUMNS)
@@ -107,6 +108,128 @@ def test_score_uses_growth_rate_instead_of_daily_absolute_value():
     assert result.loc["A", "composite_score"] > result.loc[
         "C", "composite_score"
     ]
+
+
+def test_trial_prefers_growth_and_falls_back_to_latest_value_per_industry():
+    daily = make_daily(
+        {
+            "market_return_4w": {
+                "A": 1000.0,
+                "B": 20.0,
+                "C": 30.0,
+                "D": 40.0,
+            }
+        }
+    )
+    momentum = make_momentum(
+        {
+            "market_return_4w": {
+                "A": 0.4,
+                "B": None,
+                "C": None,
+                "D": None,
+            }
+        },
+        statuses={
+            ("B", "market_return_4w"): "insufficient_history",
+            ("C", "market_return_4w"): "insufficient_history",
+            ("D", "market_return_4w"): "insufficient_history",
+        },
+    )
+
+    result = score_industries(
+        daily,
+        momentum,
+        history_days=27,
+    ).set_index("industry")
+
+    assert result.loc["A", "market_return_4w_score_source"] == "growth_rate_4w"
+    assert result.loc["B", "market_return_4w_score_source"] == "latest_value"
+    assert result.loc["A", "market_return_4w_score"] == 25.0
+    assert result.loc["D", "market_return_4w_score"] == 100.0
+    assert set(result["scoring_mode"]) == {"试运行评分模式"}
+    assert set(result["ranking_status"]) == {"trial"}
+
+
+def test_trial_fallback_excludes_invalid_daily_statuses_and_values():
+    daily = make_daily(
+        {
+            "github_repo_count_4w": {
+                "A": 10.0,
+                "B": 20.0,
+                "C": 30.0,
+                "D": 40.0,
+                "E": np.inf,
+            }
+        },
+        statuses={
+            ("D", "github_repo_count_4w"): "source_error",
+        },
+    )
+
+    result = score_industries(
+        daily,
+        momentum_frame=None,
+        history_days=4,
+    ).set_index("industry")
+
+    assert result.loc[["A", "B", "C"], "github_repo_count_4w_score"].notna().all()
+    assert result.loc[["D", "E"], "github_repo_count_4w_score"].isna().all()
+    assert result.loc["D", "github_repo_count_4w_score_source"] == "unavailable"
+    assert result.loc["E", "github_repo_count_4w_score_source"] == "unavailable"
+
+
+def test_trial_percentiles_are_independent_across_different_metric_units():
+    daily = make_daily(
+        {
+            "market_return_3m": {"A": 0.01, "B": 0.02, "C": 0.03},
+            "arxiv_paper_count_4w": {
+                "A": 1000.0,
+                "B": 100.0,
+                "C": 10.0,
+            },
+        }
+    )
+
+    result = score_industries(
+        daily,
+        momentum_frame=None,
+        history_days=4,
+    ).set_index("industry")
+
+    assert result.loc["A", "market_return_3m_score"] == pytest.approx(
+        100.0 / 3.0
+    )
+    assert result.loc["A", "arxiv_paper_count_4w_score"] == 100.0
+    assert result.loc["A", "composite_score"] == pytest.approx(
+        (100.0 / 3.0) * 0.35 + 100.0 * 0.65
+    )
+    assert result.loc["B", "composite_score"] == pytest.approx(
+        200.0 / 3.0
+    )
+
+
+def test_formal_stage_does_not_fall_back_to_latest_values():
+    daily = make_daily(
+        {"market_return_3m": {"A": 10.0, "B": 20.0, "C": 30.0}}
+    )
+
+    trial = score_industries(
+        daily,
+        momentum_frame=None,
+        history_days=27,
+    )
+    formal = score_industries(
+        daily,
+        momentum_frame=None,
+        history_days=28,
+    )
+
+    assert trial["market_return_3m_score"].notna().all()
+    assert set(trial["market_return_3m_score_source"]) == {"latest_value"}
+    assert formal["market_return_3m_score"].isna().all()
+    assert set(formal["market_return_3m_score_source"]) == {"unavailable"}
+    assert set(formal["scoring_mode"]) == {"历史数据不足，暂不排名"}
 
 
 def test_metric_with_fewer_than_three_eligible_industries_is_excluded():

@@ -90,3 +90,19 @@ def test_report_handles_insufficient_history_without_ranking(tmp_path):
     assert "约 56 天" in text
     assert "当前暂无可排名行业" in text
     assert chart.exists()
+
+
+def test_report_discloses_trial_scoring_method(tmp_path):
+    report = tmp_path / "report.md"
+    chart = tmp_path / "chart.png"
+    scores = make_scores()
+    scores["ranking_status"] = "trial"
+    scores["scoring_mode"] = "试运行评分模式"
+
+    generate_report(scores, report_path=report, chart_path=chart)
+
+    text = report.read_text(encoding="utf-8")
+    assert "试运行评分 / 历史不足，仅供观察" in text
+    assert "优先使用有效 `growth_rate_4w`" in text
+    assert "回退到最新截面值" in text
+    assert "每个底层指标独立计算行业截面百分位" in text

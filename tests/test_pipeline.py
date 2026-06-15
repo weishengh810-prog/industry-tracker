@@ -3,6 +3,7 @@ import logging
 import pandas as pd
 
 from scripts.run_pipeline import _run_collector, _source_error_frame, run_pipeline
+from scripts.score_industries import score_industries as real_score_industries
 
 
 def test_source_error_frame_accepts_single_metric():
@@ -71,8 +72,42 @@ def test_offline_pipeline_generates_all_outputs(tmp_path):
         "nvd_cve_count_4w",
     }.issubset(set(long_frame["metric"]))
     scores = pd.read_csv(outputs["score"])
-    assert scores["composite_score"].isna().all()
-    assert set(scores["scoring_mode"]) == {"历史数据不足，暂不排名"}
+    assert scores["composite_score"].notna().any()
+    assert set(scores["scoring_mode"]) == {"试运行评分模式"}
+    assert "trial" in set(scores["ranking_status"])
+
+
+def test_pipeline_passes_valid_archive_day_count_to_scoring(
+    tmp_path,
+    monkeypatch,
+):
+    archives = tmp_path / "archives"
+    for name in ("2026-06-01", "2026-06-02", "2026-6-3", "notes"):
+        (archives / name).mkdir(parents=True)
+    captured = {}
+
+    def tracking_score(
+        long_frame,
+        momentum_frame=None,
+        output_path=None,
+        history_days=28,
+    ):
+        captured["history_days"] = history_days
+        return real_score_industries(
+            long_frame,
+            momentum_frame=momentum_frame,
+            output_path=output_path,
+            history_days=history_days,
+        )
+
+    monkeypatch.setattr(
+        "scripts.run_pipeline.score_industries",
+        tracking_score,
+    )
+
+    run_pipeline(offline=True, project_root=tmp_path)
+
+    assert captured["history_days"] == 2
 
 
 def test_new_collector_crash_does_not_stop_offline_pipeline(

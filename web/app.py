@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import re
 import sqlite3
 from datetime import datetime
 from pathlib import Path
@@ -10,11 +9,15 @@ import pandas as pd
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.responses import FileResponse, Response
 
+from scripts.common import (
+    is_valid_archive_date,
+    ranking_mode_from_statuses,
+    valid_archive_dates,
+)
 from scripts.store_to_db import SCHEMA
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DB_PATH = PROJECT_ROOT / "web" / "industry.db"
-ARCHIVE_DATE_PATTERN = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 
 def _connect(db_path: Path) -> sqlite3.Connection:
@@ -52,24 +55,11 @@ def _scalar(
 
 
 def _valid_archive_date(value: str) -> bool:
-    if not ARCHIVE_DATE_PATTERN.fullmatch(value):
-        return False
-    try:
-        datetime.strptime(value, "%Y-%m-%d")
-    except ValueError:
-        return False
-    return True
+    return is_valid_archive_date(value)
 
 
 def _archive_dates(project_root: Path) -> list[str]:
-    archives_dir = project_root / "archives"
-    if not archives_dir.exists():
-        return []
-    return sorted(
-        path.name
-        for path in archives_dir.iterdir()
-        if path.is_dir() and _valid_archive_date(path.name)
-    )
+    return valid_archive_dates(project_root)
 
 
 def _csv_response(
@@ -310,12 +300,9 @@ def create_app(
             for row in score_rows
             if row["ranking_status"] == "insufficient_history"
         ]
-        if not score_rows or len(insufficient) == len(score_rows):
-            ranking_mode = "历史数据不足"
-        elif insufficient:
-            ranking_mode = "部分回退模式"
-        else:
-            ranking_mode = "完整 momentum 模式"
+        ranking_mode = ranking_mode_from_statuses(
+            row["ranking_status"] for row in score_rows
+        )
 
         archive_days = len(_archive_dates(root))
         return {

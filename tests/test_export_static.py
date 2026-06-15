@@ -118,7 +118,7 @@ def test_export_static_writes_complete_deterministic_public_data(tmp_path):
     meta = json.loads(outputs["meta"].read_text(encoding="utf-8"))
     assert meta == {
         "last_updated": "2026-06-15",
-        "ranking_mode": "完整 momentum 模式",
+        "ranking_mode": "部分 momentum 模式",
         "insufficient_industries": [],
         "archive_days": 2,
         "days_until_full_mode": 26,
@@ -171,6 +171,7 @@ def test_export_static_writes_complete_deterministic_public_data(tmp_path):
     }
 
     history = pd.read_csv(outputs["history"], encoding="utf-8-sig")
+    assert b"\r\n" not in outputs["history"].read_bytes()
     assert history.columns.tolist() == [
         "date",
         "industry",
@@ -229,3 +230,31 @@ def test_export_static_writes_valid_empty_outputs(tmp_path):
         "score_change",
         "ranking_change",
     ]
+
+
+def test_export_static_reports_trial_mode_from_latest_score_rows(tmp_path):
+    db_path = tmp_path / "web" / "industry.db"
+    output_dir = tmp_path / "docs" / "data"
+    _create_database(db_path)
+    with sqlite3.connect(db_path) as connection:
+        connection.execute(
+            """
+            UPDATE industry_scores
+            SET ranking_status = 'trial'
+            WHERE date = '2026-06-14'
+            """
+        )
+    for archive_date in ("2026-06-13", "2026-06-14"):
+        (tmp_path / "archives" / archive_date).mkdir(parents=True)
+
+    outputs = export_static(
+        db_path,
+        output_dir=output_dir,
+        project_root=tmp_path,
+    )
+
+    meta = json.loads(outputs["meta"].read_text(encoding="utf-8"))
+    ranking = json.loads(outputs["ranking"].read_text(encoding="utf-8"))
+    assert meta["ranking_mode"] == "试运行评分模式"
+    assert meta["archive_days"] == 2
+    assert {row["ranking_status"] for row in ranking} == {"trial"}

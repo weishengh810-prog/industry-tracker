@@ -2,6 +2,9 @@ from __future__ import annotations
 
 import json
 import logging
+import re
+from collections.abc import Iterable
+from datetime import date
 from pathlib import Path
 from typing import Any
 
@@ -37,6 +40,7 @@ VALID_STATUSES = {
     "insufficient_data",
     "no_match",
 }
+ARCHIVE_DATE_PATTERN = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 
 def ensure_directories(root: Path = PROJECT_ROOT) -> None:
@@ -50,6 +54,46 @@ def ensure_directories(root: Path = PROJECT_ROOT) -> None:
         "logs",
     ):
         (root / relative).mkdir(parents=True, exist_ok=True)
+
+
+def valid_archive_dates(root: Path = PROJECT_ROOT) -> list[str]:
+    archives_dir = Path(root) / "archives"
+    if not archives_dir.exists():
+        return []
+
+    valid_dates = []
+    for path in archives_dir.iterdir():
+        if not path.is_dir() or not is_valid_archive_date(path.name):
+            continue
+        valid_dates.append(path.name)
+    return sorted(valid_dates)
+
+
+def is_valid_archive_date(value: str) -> bool:
+    if not ARCHIVE_DATE_PATTERN.fullmatch(value):
+        return False
+    try:
+        date.fromisoformat(value)
+    except ValueError:
+        return False
+    return True
+
+
+def archive_days(root: Path = PROJECT_ROOT) -> int:
+    return len(valid_archive_dates(root))
+
+
+def ranking_mode_from_statuses(statuses: Iterable[str]) -> str:
+    values = [str(status) for status in statuses if status]
+    if not values or all(
+        status == "insufficient_history" for status in values
+    ):
+        return "历史数据不足"
+    if "trial" in values:
+        return "试运行评分模式"
+    if "partial" in values or "insufficient_history" in values:
+        return "部分 momentum 模式"
+    return "完整 momentum 模式"
 
 
 def setup_logging(root: Path | None = None) -> logging.Logger:

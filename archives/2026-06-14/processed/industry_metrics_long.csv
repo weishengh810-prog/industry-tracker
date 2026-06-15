@@ -1,0 +1,100 @@
+﻿industry,date,metric,value,source,status
+人工智能,2026-06-09,news_heat,1.0,Google News 中文科技,ok
+人工智能,2026-06-11,news_heat,1.0,Google News 中文科技,ok
+跨境电商,2026-06-11,news_heat,1.0,Google News 中文科技,ok
+人工智能,2026-06-12,market_return_3m,0.2971220065276629,Global X Artificial Intelligence & Technology ETF (AIQ),ok
+人工智能,2026-06-12,market_return_4w,0.0540184241330108,Global X Artificial Intelligence & Technology ETF (AIQ),ok
+人工智能,2026-06-12,market_volume_change_4w,0.7110190194129742,Global X Artificial Intelligence & Technology ETF (AIQ),ok
+人工智能,2026-06-12,news_heat,1.0,Google News 中文科技,ok
+低空经济,2026-06-12,market_return_3m,0.0809599609375,ARK Space Exploration & Innovation ETF (ARKX),ok
+低空经济,2026-06-12,market_return_4w,-0.0096746357417109,ARK Space Exploration & Innovation ETF (ARKX),ok
+低空经济,2026-06-12,market_volume_change_4w,1.120432563571489,ARK Space Exploration & Innovation ETF (ARKX),ok
+储能,2026-06-12,market_return_3m,0.1037483423205756,Amplify Lithium & Battery Technology ETF (BATT),ok
+储能,2026-06-12,market_return_4w,0.0141451130995553,Amplify Lithium & Battery Technology ETF (BATT),ok
+储能,2026-06-12,market_volume_change_4w,-0.0265212407817241,Amplify Lithium & Battery Technology ETF (BATT),ok
+医药健康,2026-06-12,market_return_3m,0.0101805335131248,iShares Global Healthcare ETF (IXJ),ok
+医药健康,2026-06-12,market_return_4w,0.0412158963432389,iShares Global Healthcare ETF (IXJ),ok
+医药健康,2026-06-12,market_volume_change_4w,0.2260707700956836,iShares Global Healthcare ETF (IXJ),ok
+半导体,2026-06-12,market_return_3m,0.5738220979889093,VanEck Semiconductor ETF (SMH),ok
+半导体,2026-06-12,market_return_4w,0.1351253340723948,VanEck Semiconductor ETF (SMH),ok
+半导体,2026-06-12,market_volume_change_4w,0.1565653089534058,VanEck Semiconductor ETF (SMH),ok
+新能源汽车,2026-06-12,market_return_3m,0.2951139196560162,Global X Autonomous & Electric Vehicles ETF (DRIV),ok
+新能源汽车,2026-06-12,market_return_4w,0.0288789277861953,Global X Autonomous & Electric Vehicles ETF (DRIV),ok
+新能源汽车,2026-06-12,market_volume_change_4w,-0.0773008261598012,Global X Autonomous & Electric Vehicles ETF (DRIV),ok
+旅游,2026-06-12,market_return_3m,0.0664002437278541,Amplify Travel Tech ETF (AWAY),ok
+旅游,2026-06-12,market_return_4w,0.041679195419797,Amplify Travel Tech ETF (AWAY),ok
+旅游,2026-06-12,market_volume_change_4w,0.3696280532350793,Amplify Travel Tech ETF (AWAY),ok
+机器人,2026-06-12,market_return_3m,0.1672057275712861,ROBO Global Robotics and Automation Index ETF (ROBO),ok
+机器人,2026-06-12,market_return_4w,-0.0147198230675981,ROBO Global Robotics and Automation Index ETF (ROBO),ok
+机器人,2026-06-12,market_volume_change_4w,1.259577422604623,ROBO Global Robotics and Automation Index ETF (ROBO),ok
+消费零售,2026-06-12,market_return_3m,-0.1190711400526348,Global X MSCI China Consumer Discretionary ETF (CHIQ),ok
+消费零售,2026-06-12,market_return_4w,-0.063550469203734,Global X MSCI China Consumer Discretionary ETF (CHIQ),ok
+消费零售,2026-06-12,market_volume_change_4w,0.5446579219506886,Global X MSCI China Consumer Discretionary ETF (CHIQ),ok
+物流供应链,2026-06-12,market_return_3m,0.1268636924540296,Pacer Industrials and Logistics ETF (SHPP),ok
+物流供应链,2026-06-12,market_return_4w,0.0316028715478717,Pacer Industrials and Logistics ETF (SHPP),ok
+物流供应链,2026-06-12,market_volume_change_4w,,Pacer Industrials and Logistics ETF (SHPP),insufficient_data
+网络安全,2026-06-12,market_return_3m,0.3252461736632956,First Trust NASDAQ Cybersecurity ETF (CIBR),ok
+网络安全,2026-06-12,market_return_4w,0.0544983163853036,First Trust NASDAQ Cybersecurity ETF (CIBR),ok
+网络安全,2026-06-12,market_volume_change_4w,0.2873765896449312,First Trust NASDAQ Cybersecurity ETF (CIBR),ok
+跨境电商,2026-06-12,market_return_3m,-0.084079739846689,EMQQ The Emerging Markets Internet & Ecommerce ETF (EMQQ),ok
+跨境电商,2026-06-12,market_return_4w,-0.0267116653373201,EMQQ The Emerging Markets Internet & Ecommerce ETF (EMQQ),ok
+跨境电商,2026-06-12,market_volume_change_4w,0.5289973184710028,EMQQ The Emerging Markets Internet & Ecommerce ETF (EMQQ),ok
+人工智能,2026-06-13,news_heat,6.0,Google News 中文科技,ok
+医药健康,2026-06-13,news_heat,1.0,Google News 中文科技,ok
+半导体,2026-06-13,news_heat,3.0,Google News 中文科技,ok
+旅游,2026-06-13,news_heat,2.0,Google News 中文科技,ok
+机器人,2026-06-13,news_heat,5.0,Google News 中文科技,ok
+消费零售,2026-06-13,news_heat,1.0,Google News 中文科技,ok
+物流供应链,2026-06-13,news_heat,2.0,Google News 中文科技,ok
+人工智能,2026-06-14,arxiv_paper_count_4w,6584.0,arXiv API,ok
+人工智能,2026-06-14,github_repo_count_4w,3861.0,GitHub Search API,ok
+人工智能,2026-06-14,nvd_cve_count_4w,,NVD CVE API,missing_config
+人工智能,2026-06-14,policy_heat,,configured_sources,missing_config
+低空经济,2026-06-14,arxiv_paper_count_4w,,arXiv API,missing_config
+低空经济,2026-06-14,github_repo_count_4w,,GitHub Search API,missing_config
+低空经济,2026-06-14,news_heat,0.0,Google News 中文科技,no_match
+低空经济,2026-06-14,nvd_cve_count_4w,,NVD CVE API,missing_config
+低空经济,2026-06-14,policy_heat,,configured_sources,missing_config
+储能,2026-06-14,arxiv_paper_count_4w,,arXiv API,missing_config
+储能,2026-06-14,github_repo_count_4w,,GitHub Search API,missing_config
+储能,2026-06-14,news_heat,0.0,Google News 中文科技,no_match
+储能,2026-06-14,nvd_cve_count_4w,,NVD CVE API,missing_config
+储能,2026-06-14,policy_heat,,configured_sources,missing_config
+医药健康,2026-06-14,arxiv_paper_count_4w,13.0,arXiv API,ok
+医药健康,2026-06-14,github_repo_count_4w,,GitHub Search API,missing_config
+医药健康,2026-06-14,nvd_cve_count_4w,,NVD CVE API,missing_config
+医药健康,2026-06-14,policy_heat,,configured_sources,missing_config
+半导体,2026-06-14,arxiv_paper_count_4w,246.0,arXiv API,ok
+半导体,2026-06-14,github_repo_count_4w,1989.0,GitHub Search API,ok
+半导体,2026-06-14,nvd_cve_count_4w,,NVD CVE API,missing_config
+半导体,2026-06-14,policy_heat,,configured_sources,missing_config
+新能源汽车,2026-06-14,arxiv_paper_count_4w,,arXiv API,missing_config
+新能源汽车,2026-06-14,github_repo_count_4w,,GitHub Search API,missing_config
+新能源汽车,2026-06-14,news_heat,0.0,Google News 中文科技,no_match
+新能源汽车,2026-06-14,nvd_cve_count_4w,,NVD CVE API,missing_config
+新能源汽车,2026-06-14,policy_heat,,configured_sources,missing_config
+旅游,2026-06-14,arxiv_paper_count_4w,,arXiv API,missing_config
+旅游,2026-06-14,github_repo_count_4w,,GitHub Search API,missing_config
+旅游,2026-06-14,nvd_cve_count_4w,,NVD CVE API,missing_config
+旅游,2026-06-14,policy_heat,,configured_sources,missing_config
+机器人,2026-06-14,arxiv_paper_count_4w,1380.0,arXiv API,ok
+机器人,2026-06-14,github_repo_count_4w,7284.0,GitHub Search API,ok
+机器人,2026-06-14,nvd_cve_count_4w,,NVD CVE API,missing_config
+机器人,2026-06-14,policy_heat,,configured_sources,missing_config
+消费零售,2026-06-14,arxiv_paper_count_4w,,arXiv API,missing_config
+消费零售,2026-06-14,github_repo_count_4w,,GitHub Search API,missing_config
+消费零售,2026-06-14,nvd_cve_count_4w,,NVD CVE API,missing_config
+消费零售,2026-06-14,policy_heat,,configured_sources,missing_config
+物流供应链,2026-06-14,arxiv_paper_count_4w,,arXiv API,missing_config
+物流供应链,2026-06-14,github_repo_count_4w,,GitHub Search API,missing_config
+物流供应链,2026-06-14,nvd_cve_count_4w,,NVD CVE API,missing_config
+物流供应链,2026-06-14,policy_heat,,configured_sources,missing_config
+网络安全,2026-06-14,arxiv_paper_count_4w,,arXiv API,missing_config
+网络安全,2026-06-14,github_repo_count_4w,10257.0,GitHub Search API,ok
+网络安全,2026-06-14,news_heat,0.0,Google News 中文科技,no_match
+网络安全,2026-06-14,nvd_cve_count_4w,6426.0,NVD CVE API,ok
+网络安全,2026-06-14,policy_heat,,configured_sources,missing_config
+跨境电商,2026-06-14,arxiv_paper_count_4w,,arXiv API,missing_config
+跨境电商,2026-06-14,github_repo_count_4w,,GitHub Search API,missing_config
+跨境电商,2026-06-14,nvd_cve_count_4w,,NVD CVE API,missing_config
+跨境电商,2026-06-14,policy_heat,,configured_sources,missing_config

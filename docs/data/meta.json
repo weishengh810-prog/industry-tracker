@@ -1,7 +1,20 @@
 {
-  "last_updated": "2026-06-15",
-  "ranking_mode": "完整 momentum 模式",
-  "insufficient_industries": [],
-  "archive_days": 2,
-  "days_until_full_mode": 26
+  "last_updated": "2026-06-16",
+  "ranking_mode": "历史数据不足",
+  "insufficient_industries": [
+    "人工智能",
+    "低空经济",
+    "储能",
+    "医药健康",
+    "半导体",
+    "新能源汽车",
+    "旅游",
+    "机器人",
+    "消费零售",
+    "物流供应链",
+    "网络安全",
+    "跨境电商"
+  ],
+  "archive_days": 4,
+  "days_until_full_mode": 24
 }

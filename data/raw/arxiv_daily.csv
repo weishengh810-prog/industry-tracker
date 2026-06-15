@@ -1,0 +1,13 @@
+﻿industry,date,metric,value,source,status
+人工智能,2026-06-16,arxiv_paper_count_4w,6114.0,arXiv API,ok
+半导体,2026-06-16,arxiv_paper_count_4w,236.0,arXiv API,ok
+新能源汽车,2026-06-16,arxiv_paper_count_4w,,arXiv API,missing_config
+储能,2026-06-16,arxiv_paper_count_4w,,arXiv API,missing_config
+机器人,2026-06-16,arxiv_paper_count_4w,1305.0,arXiv API,ok
+低空经济,2026-06-16,arxiv_paper_count_4w,,arXiv API,missing_config
+跨境电商,2026-06-16,arxiv_paper_count_4w,,arXiv API,missing_config
+医药健康,2026-06-16,arxiv_paper_count_4w,15.0,arXiv API,ok
+消费零售,2026-06-16,arxiv_paper_count_4w,,arXiv API,missing_config
+物流供应链,2026-06-16,arxiv_paper_count_4w,,arXiv API,missing_config
+旅游,2026-06-16,arxiv_paper_count_4w,,arXiv API,missing_config
+网络安全,2026-06-16,arxiv_paper_count_4w,,arXiv API,missing_config

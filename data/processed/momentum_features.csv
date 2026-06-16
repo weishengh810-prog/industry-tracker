@@ -44,7 +44,7 @@
 新能源汽车,market_return_3m,,,1,insufficient_history
 新能源汽车,market_return_4w,,,1,insufficient_history
 新能源汽车,market_volume_change_4w,,,1,insufficient_history
-新能源汽车,news_heat,,,1,insufficient_history
+新能源汽车,news_heat,,,0,insufficient_history
 新能源汽车,nvd_cve_count_4w,,,0,missing_config
 新能源汽车,policy_heat,,,0,missing_config
 旅游,arxiv_paper_count_4w,,,0,missing_config
@@ -76,7 +76,7 @@
 物流供应链,market_return_3m,,,1,insufficient_history
 物流供应链,market_return_4w,,,1,insufficient_history
 物流供应链,market_volume_change_4w,,,1,insufficient_data
-物流供应链,news_heat,,,1,insufficient_history
+物流供应链,news_heat,,,0,insufficient_history
 物流供应链,nvd_cve_count_4w,,,0,missing_config
 物流供应链,policy_heat,,,0,missing_config
 网络安全,arxiv_paper_count_4w,,,0,missing_config

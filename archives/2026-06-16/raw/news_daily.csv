@@ -1,16 +1,16 @@
 ﻿industry,date,metric,value,source,status
 低空经济,2026-06-15,news_heat,1,Google News 中文科技,ok
-机器人,2026-06-15,news_heat,3,Google News 中文科技,ok
 人工智能,2026-06-15,news_heat,10,Google News 中文科技,ok
-半导体,2026-06-15,news_heat,5,Google News 中文科技,ok
+旅游,2026-06-15,news_heat,2,Google News 中文科技,ok
 跨境电商,2026-06-15,news_heat,1,Google News 中文科技,ok
-物流供应链,2026-06-15,news_heat,1,Google News 中文科技,ok
+半导体,2026-06-15,news_heat,1,Google News 中文科技,ok
+机器人,2026-06-15,news_heat,1,Google News 中文科技,ok
+医药健康,2026-06-15,news_heat,1,Google News 中文科技,ok
 人工智能,2026-06-09,news_heat,1,Google News 中文科技,ok
-新能源汽车,2026-06-15,news_heat,1,Google News 中文科技,ok
 人工智能,2026-06-11,news_heat,1,Google News 中文科技,ok
 跨境电商,2026-06-11,news_heat,1,Google News 中文科技,ok
+新能源汽车,2026-06-16,news_heat,0,Google News 中文科技,no_match
 储能,2026-06-16,news_heat,0,Google News 中文科技,no_match
-医药健康,2026-06-16,news_heat,0,Google News 中文科技,no_match
 消费零售,2026-06-16,news_heat,0,Google News 中文科技,no_match
-旅游,2026-06-16,news_heat,0,Google News 中文科技,no_match
+物流供应链,2026-06-16,news_heat,0,Google News 中文科技,no_match
 网络安全,2026-06-16,news_heat,0,Google News 中文科技,no_match

@@ -1,7 +1,7 @@
 {
-  "last_updated": "2026-06-16",
+  "last_updated": "2026-06-17",
   "ranking_mode": "试运行评分模式",
   "insufficient_industries": [],
-  "archive_days": 5,
-  "days_until_full_mode": 23
+  "archive_days": 6,
+  "days_until_full_mode": 22
 }

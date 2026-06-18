@@ -4,7 +4,7 @@
 人工智能,market_return_3m,,,1,insufficient_history
 人工智能,market_return_4w,,,1,insufficient_history
 人工智能,market_volume_change_4w,,,1,insufficient_history
-人工智能,news_heat,2.142857142857143,,1,ok
+人工智能,news_heat,2.5,,1,ok
 人工智能,nvd_cve_count_4w,,,0,missing_config
 人工智能,policy_heat,,,0,missing_config
 低空经济,arxiv_paper_count_4w,,,0,missing_config
@@ -12,7 +12,7 @@
 低空经济,market_return_3m,,,1,insufficient_history
 低空经济,market_return_4w,,,1,insufficient_history
 低空经济,market_volume_change_4w,,,1,insufficient_history
-低空经济,news_heat,,,1,insufficient_history
+低空经济,news_heat,,,0,insufficient_history
 低空经济,nvd_cve_count_4w,,,0,missing_config
 低空经济,policy_heat,,,0,missing_config
 储能,arxiv_paper_count_4w,,,0,missing_config
@@ -20,7 +20,7 @@
 储能,market_return_3m,,,1,insufficient_history
 储能,market_return_4w,,,1,insufficient_history
 储能,market_volume_change_4w,,,1,insufficient_history
-储能,news_heat,,,1,insufficient_history
+储能,news_heat,,,0,insufficient_history
 储能,nvd_cve_count_4w,,,0,missing_config
 储能,policy_heat,,,0,missing_config
 医药健康,arxiv_paper_count_4w,,,0,insufficient_history
@@ -28,7 +28,7 @@
 医药健康,market_return_3m,,,1,insufficient_history
 医药健康,market_return_4w,,,1,insufficient_history
 医药健康,market_volume_change_4w,,,1,insufficient_history
-医药健康,news_heat,,,1,insufficient_history
+医药健康,news_heat,,,0,insufficient_history
 医药健康,nvd_cve_count_4w,,,0,missing_config
 医药健康,policy_heat,,,0,missing_config
 半导体,arxiv_paper_count_4w,,,0,insufficient_history
@@ -68,7 +68,7 @@
 消费零售,market_return_3m,,,1,insufficient_history
 消费零售,market_return_4w,,,1,insufficient_history
 消费零售,market_volume_change_4w,,,1,insufficient_history
-消费零售,news_heat,,,0,insufficient_history
+消费零售,news_heat,,,1,insufficient_history
 消费零售,nvd_cve_count_4w,,,0,missing_config
 消费零售,policy_heat,,,0,missing_config
 物流供应链,arxiv_paper_count_4w,,,0,missing_config
@@ -85,7 +85,7 @@
 网络安全,market_return_4w,,,1,insufficient_history
 网络安全,market_volume_change_4w,,,1,insufficient_history
 网络安全,news_heat,,,0,insufficient_history
-网络安全,nvd_cve_count_4w,,,0,insufficient_history
+网络安全,nvd_cve_count_4w,,,0,source_error
 网络安全,policy_heat,,,0,missing_config
 跨境电商,arxiv_paper_count_4w,,,0,missing_config
 跨境电商,github_repo_count_4w,,,0,missing_config

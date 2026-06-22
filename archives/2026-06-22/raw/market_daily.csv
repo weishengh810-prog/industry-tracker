@@ -1,0 +1,37 @@
+﻿industry,date,metric,value,source,status
+人工智能,2026-06-18,market_return_3m,0.3767519048130834,Global X Artificial Intelligence & Technology ETF (AIQ),ok
+人工智能,2026-06-18,market_return_4w,0.06352494174858414,Global X Artificial Intelligence & Technology ETF (AIQ),ok
+人工智能,2026-06-18,market_volume_change_4w,0.6266076144639983,Global X Artificial Intelligence & Technology ETF (AIQ),ok
+半导体,2026-06-18,market_return_3m,0.6861202718260424,VanEck Semiconductor ETF (SMH),ok
+半导体,2026-06-18,market_return_4w,0.14498888897949658,VanEck Semiconductor ETF (SMH),ok
+半导体,2026-06-18,market_volume_change_4w,0.08692188473181828,VanEck Semiconductor ETF (SMH),ok
+新能源汽车,2026-06-18,market_return_3m,0.32688369292582076,Global X Autonomous & Electric Vehicles ETF (DRIV),ok
+新能源汽车,2026-06-18,market_return_4w,-0.007127786367127853,Global X Autonomous & Electric Vehicles ETF (DRIV),ok
+新能源汽车,2026-06-18,market_volume_change_4w,-0.021509739075101564,Global X Autonomous & Electric Vehicles ETF (DRIV),ok
+储能,2026-06-18,market_return_3m,0.14830210286834555,Amplify Lithium & Battery Technology ETF (BATT),ok
+储能,2026-06-18,market_return_4w,-0.008378180569652338,Amplify Lithium & Battery Technology ETF (BATT),ok
+储能,2026-06-18,market_volume_change_4w,-0.23277404265216384,Amplify Lithium & Battery Technology ETF (BATT),ok
+机器人,2026-06-18,market_return_3m,0.2241992882562278,ROBO Global Robotics and Automation Index ETF (ROBO),ok
+机器人,2026-06-18,market_return_4w,-0.014891214276213427,ROBO Global Robotics and Automation Index ETF (ROBO),ok
+机器人,2026-06-18,market_volume_change_4w,0.5062806454830764,ROBO Global Robotics and Automation Index ETF (ROBO),ok
+低空经济,2026-06-18,market_return_3m,0.12793740410343912,ARK Space Exploration & Innovation ETF (ARKX),ok
+低空经济,2026-06-18,market_return_4w,-0.024279978546365433,ARK Space Exploration & Innovation ETF (ARKX),ok
+低空经济,2026-06-18,market_volume_change_4w,1.503414091803346,ARK Space Exploration & Innovation ETF (ARKX),ok
+跨境电商,2026-06-18,market_return_3m,-0.044699529516838865,EMQQ The Emerging Markets Internet & Ecommerce ETF (EMQQ),ok
+跨境电商,2026-06-18,market_return_4w,-0.022860667146616942,EMQQ The Emerging Markets Internet & Ecommerce ETF (EMQQ),ok
+跨境电商,2026-06-18,market_volume_change_4w,0.29198993499685466,EMQQ The Emerging Markets Internet & Ecommerce ETF (EMQQ),ok
+医药健康,2026-06-18,market_return_3m,0.022505285479673898,iShares Global Healthcare ETF (IXJ),ok
+医药健康,2026-06-18,market_return_4w,-0.011024699215345768,iShares Global Healthcare ETF (IXJ),ok
+医药健康,2026-06-18,market_volume_change_4w,1.2312242055839495,iShares Global Healthcare ETF (IXJ),ok
+消费零售,2026-06-18,market_return_3m,-0.1406010412394444,Global X MSCI China Consumer Discretionary ETF (CHIQ),ok
+消费零售,2026-06-18,market_return_4w,-0.09056595509021503,Global X MSCI China Consumer Discretionary ETF (CHIQ),ok
+消费零售,2026-06-18,market_volume_change_4w,0.38239050248639095,Global X MSCI China Consumer Discretionary ETF (CHIQ),ok
+物流供应链,2026-06-18,market_return_3m,0.10254634546539187,Pacer Industrials and Logistics ETF (SHPP),ok
+物流供应链,2026-06-18,market_return_4w,-0.010861800537450672,Pacer Industrials and Logistics ETF (SHPP),ok
+物流供应链,2026-06-18,market_volume_change_4w,,Pacer Industrials and Logistics ETF (SHPP),insufficient_data
+旅游,2026-06-18,market_return_3m,0.1063816925460872,Amplify Travel Tech ETF (AWAY),ok
+旅游,2026-06-18,market_return_4w,0.09474899540782711,Amplify Travel Tech ETF (AWAY),ok
+旅游,2026-06-18,market_volume_change_4w,0.8129542368820382,Amplify Travel Tech ETF (AWAY),ok
+网络安全,2026-06-18,market_return_3m,0.30287701511988807,First Trust NASDAQ Cybersecurity ETF (CIBR),ok
+网络安全,2026-06-18,market_return_4w,0.003084980303705631,First Trust NASDAQ Cybersecurity ETF (CIBR),ok
+网络安全,2026-06-18,market_volume_change_4w,0.23506758901893265,First Trust NASDAQ Cybersecurity ETF (CIBR),ok

@@ -1,0 +1,18 @@
+{
+  "人工智能": {
+    "value": 5658,
+    "status": "ok"
+  },
+  "半导体": {
+    "value": 226,
+    "status": "ok"
+  },
+  "机器人": {
+    "value": 1344,
+    "status": "ok"
+  },
+  "医药健康": {
+    "value": 14,
+    "status": "ok"
+  }
+}

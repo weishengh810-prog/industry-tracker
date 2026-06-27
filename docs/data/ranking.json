@@ -1,47 +1,47 @@
 [
   {
-    "date": "2026-06-26",
+    "date": "2026-06-27",
     "industry": "网络安全",
-    "composite_score": 88.33333333333333,
+    "composite_score": 86.875,
     "ranking": 1,
     "ranking_status": "trial",
-    "capital_momentum_score": 66.66666666666667,
+    "capital_momentum_score": 62.50000000000001,
     "tech_activity_score": 100.0,
     "external_signal_score": null,
-    "score_change": -4.374999999999986,
+    "score_change": -1.4583333333333286,
     "ranking_change": 0,
     "latest_metrics": {
       "daily_metrics": [
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "arxiv_paper_count_4w",
           "value": null,
           "source": "arXiv API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "github_repo_count_4w",
-          "value": 10545.0,
+          "value": 10685.0,
           "source": "GitHub Search API",
           "status": "ok"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "news_heat",
           "value": 0.0,
           "source": "Google News 中文科技",
           "status": "no_match"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "nvd_cve_count_4w",
-          "value": 6785.0,
+          "value": 7100.0,
           "source": "NVD CVE API",
           "status": "ok"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "policy_heat",
           "value": null,
           "source": "configured_sources",
@@ -50,7 +50,7 @@
       ],
       "momentum_features": [
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "arxiv_paper_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -58,7 +58,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "github_repo_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -66,7 +66,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_return_3m",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -74,7 +74,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_return_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -82,7 +82,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_volume_change_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -90,7 +90,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "news_heat",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -98,7 +98,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "nvd_cve_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -106,7 +106,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "policy_heat",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -117,158 +117,48 @@
     }
   },
   {
-    "date": "2026-06-26",
-    "industry": "人工智能",
-    "composite_score": 76.45833333333333,
+    "date": "2026-06-27",
+    "industry": "旅游",
+    "composite_score": 75.0,
     "ranking": 2,
     "ranking_status": "trial",
-    "capital_momentum_score": 79.16666666666666,
-    "tech_activity_score": 75.0,
+    "capital_momentum_score": 75.0,
+    "tech_activity_score": null,
     "external_signal_score": null,
-    "score_change": 1.4583333333333286,
+    "score_change": 4.166666666666657,
     "ranking_change": 1,
     "latest_metrics": {
       "daily_metrics": [
         {
-          "date": "2026-06-26",
-          "metric": "arxiv_paper_count_4w",
-          "value": 5656.0,
-          "source": "arXiv API",
-          "status": "ok"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "github_repo_count_4w",
-          "value": 4177.0,
-          "source": "GitHub Search API",
-          "status": "ok"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "nvd_cve_count_4w",
-          "value": null,
-          "source": "NVD CVE API",
-          "status": "missing_config"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "policy_heat",
-          "value": null,
-          "source": "configured_sources",
-          "status": "missing_config"
-        }
-      ],
-      "momentum_features": [
-        {
-          "date": "2026-06-26",
-          "metric": "arxiv_paper_count_4w",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 0.0,
-          "momentum_status": "insufficient_history"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "github_repo_count_4w",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 0.0,
-          "momentum_status": "insufficient_history"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "market_return_3m",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 1.0,
-          "momentum_status": "insufficient_history"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "market_return_4w",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 1.0,
-          "momentum_status": "insufficient_history"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "market_volume_change_4w",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 1.0,
-          "momentum_status": "insufficient_history"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "news_heat",
-          "growth_rate_4w": 3.352941176470588,
-          "z_score_12w": 2.392108521454993,
-          "freshness_days": 1.0,
-          "momentum_status": "ok"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "nvd_cve_count_4w",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 0.0,
-          "momentum_status": "missing_config"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "policy_heat",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 0.0,
-          "momentum_status": "missing_config"
-        }
-      ]
-    }
-  },
-  {
-    "date": "2026-06-26",
-    "industry": "旅游",
-    "composite_score": 70.83333333333334,
-    "ranking": 3,
-    "ranking_status": "trial",
-    "capital_momentum_score": 70.83333333333334,
-    "tech_activity_score": null,
-    "external_signal_score": null,
-    "score_change": -8.333333333333329,
-    "ranking_change": -1,
-    "latest_metrics": {
-      "daily_metrics": [
-        {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "arxiv_paper_count_4w",
           "value": null,
           "source": "arXiv API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "github_repo_count_4w",
           "value": null,
           "source": "GitHub Search API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "news_heat",
           "value": 0.0,
           "source": "Google News 中文科技",
           "status": "no_match"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "nvd_cve_count_4w",
           "value": null,
           "source": "NVD CVE API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "policy_heat",
           "value": null,
           "source": "configured_sources",
@@ -277,7 +167,7 @@
       ],
       "momentum_features": [
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "arxiv_paper_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -285,7 +175,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "github_repo_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -293,7 +183,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_return_3m",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -301,7 +191,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_return_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -309,7 +199,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_volume_change_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -317,7 +207,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "news_heat",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -325,7 +215,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "nvd_cve_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -333,7 +223,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "policy_heat",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -344,7 +234,117 @@
     }
   },
   {
-    "date": "2026-06-26",
+    "date": "2026-06-27",
+    "industry": "人工智能",
+    "composite_score": 73.54166666666666,
+    "ranking": 3,
+    "ranking_status": "trial",
+    "capital_momentum_score": 70.83333333333333,
+    "tech_activity_score": 75.0,
+    "external_signal_score": null,
+    "score_change": -2.9166666666666714,
+    "ranking_change": -1,
+    "latest_metrics": {
+      "daily_metrics": [
+        {
+          "date": "2026-06-27",
+          "metric": "arxiv_paper_count_4w",
+          "value": 5747.0,
+          "source": "arXiv API",
+          "status": "ok"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "github_repo_count_4w",
+          "value": 4188.0,
+          "source": "GitHub Search API",
+          "status": "ok"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "nvd_cve_count_4w",
+          "value": null,
+          "source": "NVD CVE API",
+          "status": "missing_config"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "policy_heat",
+          "value": null,
+          "source": "configured_sources",
+          "status": "missing_config"
+        }
+      ],
+      "momentum_features": [
+        {
+          "date": "2026-06-27",
+          "metric": "arxiv_paper_count_4w",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 0.0,
+          "momentum_status": "insufficient_history"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "github_repo_count_4w",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 0.0,
+          "momentum_status": "insufficient_history"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "market_return_3m",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 1.0,
+          "momentum_status": "insufficient_history"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "market_return_4w",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 1.0,
+          "momentum_status": "insufficient_history"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "market_volume_change_4w",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 1.0,
+          "momentum_status": "insufficient_history"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "news_heat",
+          "growth_rate_4w": 3.1111111111111107,
+          "z_score_12w": 2.248882225544018,
+          "freshness_days": 1.0,
+          "momentum_status": "ok"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "nvd_cve_count_4w",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 0.0,
+          "momentum_status": "missing_config"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "policy_heat",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 0.0,
+          "momentum_status": "missing_config"
+        }
+      ]
+    }
+  },
+  {
+    "date": "2026-06-27",
     "industry": "机器人",
     "composite_score": 70.625,
     "ranking": 4,
@@ -352,33 +352,33 @@
     "capital_momentum_score": 62.5,
     "tech_activity_score": 75.0,
     "external_signal_score": null,
-    "score_change": 2.9166666666666714,
+    "score_change": 0.0,
     "ranking_change": 0,
     "latest_metrics": {
       "daily_metrics": [
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "arxiv_paper_count_4w",
-          "value": 1467.0,
+          "value": 1511.0,
           "source": "arXiv API",
           "status": "ok"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "github_repo_count_4w",
-          "value": 8483.0,
+          "value": 8569.0,
           "source": "GitHub Search API",
           "status": "ok"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "nvd_cve_count_4w",
           "value": null,
           "source": "NVD CVE API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "policy_heat",
           "value": null,
           "source": "configured_sources",
@@ -387,7 +387,7 @@
       ],
       "momentum_features": [
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "arxiv_paper_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -395,7 +395,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "github_repo_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -403,7 +403,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_return_3m",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -411,7 +411,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_return_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -419,7 +419,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_volume_change_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -427,7 +427,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "news_heat",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -435,7 +435,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "nvd_cve_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -443,7 +443,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "policy_heat",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -454,151 +454,41 @@
     }
   },
   {
-    "date": "2026-06-26",
-    "industry": "半导体",
-    "composite_score": 59.375,
+    "date": "2026-06-27",
+    "industry": "物流供应链",
+    "composite_score": 62.50000000000001,
     "ranking": 5,
     "ranking_status": "trial",
-    "capital_momentum_score": 100.0,
-    "tech_activity_score": 37.5,
-    "external_signal_score": null,
-    "score_change": 1.4583333333333428,
-    "ranking_change": 0,
-    "latest_metrics": {
-      "daily_metrics": [
-        {
-          "date": "2026-06-26",
-          "metric": "arxiv_paper_count_4w",
-          "value": 249.0,
-          "source": "arXiv API",
-          "status": "ok"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "github_repo_count_4w",
-          "value": 2074.0,
-          "source": "GitHub Search API",
-          "status": "ok"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "nvd_cve_count_4w",
-          "value": null,
-          "source": "NVD CVE API",
-          "status": "missing_config"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "policy_heat",
-          "value": null,
-          "source": "configured_sources",
-          "status": "missing_config"
-        }
-      ],
-      "momentum_features": [
-        {
-          "date": "2026-06-26",
-          "metric": "arxiv_paper_count_4w",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 0.0,
-          "momentum_status": "insufficient_history"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "github_repo_count_4w",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 0.0,
-          "momentum_status": "insufficient_history"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "market_return_3m",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 1.0,
-          "momentum_status": "insufficient_history"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "market_return_4w",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 1.0,
-          "momentum_status": "insufficient_history"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "market_volume_change_4w",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 1.0,
-          "momentum_status": "insufficient_history"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "news_heat",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 1.0,
-          "momentum_status": "insufficient_history"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "nvd_cve_count_4w",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 0.0,
-          "momentum_status": "missing_config"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "policy_heat",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 0.0,
-          "momentum_status": "missing_config"
-        }
-      ]
-    }
-  },
-  {
-    "date": "2026-06-26",
-    "industry": "物流供应链",
-    "composite_score": 58.33333333333334,
-    "ranking": 6,
-    "ranking_status": "trial",
-    "capital_momentum_score": 58.333333333333336,
+    "capital_momentum_score": 62.5,
     "tech_activity_score": null,
     "external_signal_score": null,
-    "score_change": 4.166666666666686,
-    "ranking_change": 0,
+    "score_change": 4.166666666666664,
+    "ranking_change": 1,
     "latest_metrics": {
       "daily_metrics": [
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "arxiv_paper_count_4w",
           "value": null,
           "source": "arXiv API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "github_repo_count_4w",
           "value": null,
           "source": "GitHub Search API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "nvd_cve_count_4w",
           "value": null,
           "source": "NVD CVE API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "policy_heat",
           "value": null,
           "source": "configured_sources",
@@ -607,7 +497,7 @@
       ],
       "momentum_features": [
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "arxiv_paper_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -615,7 +505,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "github_repo_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -623,7 +513,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_return_3m",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -631,7 +521,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_return_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -639,7 +529,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_volume_change_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -647,15 +537,15 @@
           "momentum_status": "insufficient_data"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "news_heat",
           "growth_rate_4w": null,
           "z_score_12w": null,
-          "freshness_days": 2.0,
+          "freshness_days": 3.0,
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "nvd_cve_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -663,7 +553,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "policy_heat",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -674,7 +564,117 @@
     }
   },
   {
-    "date": "2026-06-26",
+    "date": "2026-06-27",
+    "industry": "半导体",
+    "composite_score": 56.458333333333336,
+    "ranking": 6,
+    "ranking_status": "trial",
+    "capital_momentum_score": 91.66666666666669,
+    "tech_activity_score": 37.5,
+    "external_signal_score": null,
+    "score_change": -2.9166666666666643,
+    "ranking_change": -1,
+    "latest_metrics": {
+      "daily_metrics": [
+        {
+          "date": "2026-06-27",
+          "metric": "arxiv_paper_count_4w",
+          "value": 257.0,
+          "source": "arXiv API",
+          "status": "ok"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "github_repo_count_4w",
+          "value": 2076.0,
+          "source": "GitHub Search API",
+          "status": "ok"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "nvd_cve_count_4w",
+          "value": null,
+          "source": "NVD CVE API",
+          "status": "missing_config"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "policy_heat",
+          "value": null,
+          "source": "configured_sources",
+          "status": "missing_config"
+        }
+      ],
+      "momentum_features": [
+        {
+          "date": "2026-06-27",
+          "metric": "arxiv_paper_count_4w",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 0.0,
+          "momentum_status": "insufficient_history"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "github_repo_count_4w",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 0.0,
+          "momentum_status": "insufficient_history"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "market_return_3m",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 1.0,
+          "momentum_status": "insufficient_history"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "market_return_4w",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 1.0,
+          "momentum_status": "insufficient_history"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "market_volume_change_4w",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 1.0,
+          "momentum_status": "insufficient_history"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "news_heat",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 1.0,
+          "momentum_status": "insufficient_history"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "nvd_cve_count_4w",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 0.0,
+          "momentum_status": "missing_config"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "policy_heat",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 0.0,
+          "momentum_status": "missing_config"
+        }
+      ]
+    }
+  },
+  {
+    "date": "2026-06-27",
     "industry": "新能源汽车",
     "composite_score": 54.16666666666666,
     "ranking": 7,
@@ -683,32 +683,39 @@
     "tech_activity_score": null,
     "external_signal_score": null,
     "score_change": 0.0,
-    "ranking_change": -1,
+    "ranking_change": 0,
     "latest_metrics": {
       "daily_metrics": [
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "arxiv_paper_count_4w",
           "value": null,
           "source": "arXiv API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "github_repo_count_4w",
           "value": null,
           "source": "GitHub Search API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
+          "metric": "news_heat",
+          "value": 0.0,
+          "source": "Google News 中文科技",
+          "status": "no_match"
+        },
+        {
+          "date": "2026-06-27",
           "metric": "nvd_cve_count_4w",
           "value": null,
           "source": "NVD CVE API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "policy_heat",
           "value": null,
           "source": "configured_sources",
@@ -717,7 +724,7 @@
       ],
       "momentum_features": [
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "arxiv_paper_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -725,7 +732,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "github_repo_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -733,7 +740,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_return_3m",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -741,7 +748,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_return_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -749,7 +756,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_volume_change_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -757,15 +764,15 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "news_heat",
           "growth_rate_4w": null,
           "z_score_12w": null,
-          "freshness_days": 1.0,
+          "freshness_days": 0.0,
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "nvd_cve_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -773,7 +780,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "policy_heat",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -784,48 +791,158 @@
     }
   },
   {
-    "date": "2026-06-26",
-    "industry": "医药健康",
-    "composite_score": 36.66666666666666,
+    "date": "2026-06-27",
+    "industry": "跨境电商",
+    "composite_score": 41.66666666666666,
     "ranking": 8,
     "ranking_status": "trial",
-    "capital_momentum_score": 58.33333333333333,
-    "tech_activity_score": 25.0,
+    "capital_momentum_score": 41.66666666666666,
+    "tech_activity_score": null,
     "external_signal_score": null,
-    "score_change": 1.4583333333333286,
-    "ranking_change": 0,
+    "score_change": 12.499999999999986,
+    "ranking_change": 1,
     "latest_metrics": {
       "daily_metrics": [
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
+          "metric": "arxiv_paper_count_4w",
+          "value": null,
+          "source": "arXiv API",
+          "status": "missing_config"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "github_repo_count_4w",
+          "value": null,
+          "source": "GitHub Search API",
+          "status": "missing_config"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "nvd_cve_count_4w",
+          "value": null,
+          "source": "NVD CVE API",
+          "status": "missing_config"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "policy_heat",
+          "value": null,
+          "source": "configured_sources",
+          "status": "missing_config"
+        }
+      ],
+      "momentum_features": [
+        {
+          "date": "2026-06-27",
+          "metric": "arxiv_paper_count_4w",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 0.0,
+          "momentum_status": "missing_config"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "github_repo_count_4w",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 0.0,
+          "momentum_status": "missing_config"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "market_return_3m",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 1.0,
+          "momentum_status": "insufficient_history"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "market_return_4w",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 1.0,
+          "momentum_status": "insufficient_history"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "market_volume_change_4w",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 1.0,
+          "momentum_status": "insufficient_history"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "news_heat",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 1.0,
+          "momentum_status": "insufficient_history"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "nvd_cve_count_4w",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 0.0,
+          "momentum_status": "missing_config"
+        },
+        {
+          "date": "2026-06-27",
+          "metric": "policy_heat",
+          "growth_rate_4w": null,
+          "z_score_12w": null,
+          "freshness_days": 0.0,
+          "momentum_status": "missing_config"
+        }
+      ]
+    }
+  },
+  {
+    "date": "2026-06-27",
+    "industry": "医药健康",
+    "composite_score": 39.58333333333333,
+    "ranking": 9,
+    "ranking_status": "trial",
+    "capital_momentum_score": 66.66666666666666,
+    "tech_activity_score": 25.0,
+    "external_signal_score": null,
+    "score_change": 2.9166666666666714,
+    "ranking_change": -1,
+    "latest_metrics": {
+      "daily_metrics": [
+        {
+          "date": "2026-06-27",
           "metric": "arxiv_paper_count_4w",
           "value": 14.0,
           "source": "arXiv API",
           "status": "ok"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "github_repo_count_4w",
           "value": null,
           "source": "GitHub Search API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "news_heat",
           "value": 0.0,
           "source": "Google News 中文科技",
           "status": "no_match"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "nvd_cve_count_4w",
           "value": null,
           "source": "NVD CVE API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "policy_heat",
           "value": null,
           "source": "configured_sources",
@@ -834,7 +951,7 @@
       ],
       "momentum_features": [
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "arxiv_paper_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -842,7 +959,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "github_repo_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -850,7 +967,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_return_3m",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -858,7 +975,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_return_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -866,7 +983,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_volume_change_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -874,7 +991,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "news_heat",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -882,7 +999,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "nvd_cve_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -890,7 +1007,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "policy_heat",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -901,158 +1018,48 @@
     }
   },
   {
-    "date": "2026-06-26",
-    "industry": "跨境电商",
-    "composite_score": 29.16666666666667,
-    "ranking": 9,
-    "ranking_status": "trial",
-    "capital_momentum_score": 29.166666666666668,
-    "tech_activity_score": null,
-    "external_signal_score": null,
-    "score_change": -4.166666666666657,
-    "ranking_change": 0,
-    "latest_metrics": {
-      "daily_metrics": [
-        {
-          "date": "2026-06-26",
-          "metric": "arxiv_paper_count_4w",
-          "value": null,
-          "source": "arXiv API",
-          "status": "missing_config"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "github_repo_count_4w",
-          "value": null,
-          "source": "GitHub Search API",
-          "status": "missing_config"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "nvd_cve_count_4w",
-          "value": null,
-          "source": "NVD CVE API",
-          "status": "missing_config"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "policy_heat",
-          "value": null,
-          "source": "configured_sources",
-          "status": "missing_config"
-        }
-      ],
-      "momentum_features": [
-        {
-          "date": "2026-06-26",
-          "metric": "arxiv_paper_count_4w",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 0.0,
-          "momentum_status": "missing_config"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "github_repo_count_4w",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 0.0,
-          "momentum_status": "missing_config"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "market_return_3m",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 1.0,
-          "momentum_status": "insufficient_history"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "market_return_4w",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 1.0,
-          "momentum_status": "insufficient_history"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "market_volume_change_4w",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 1.0,
-          "momentum_status": "insufficient_history"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "news_heat",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 1.0,
-          "momentum_status": "insufficient_history"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "nvd_cve_count_4w",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 0.0,
-          "momentum_status": "missing_config"
-        },
-        {
-          "date": "2026-06-26",
-          "metric": "policy_heat",
-          "growth_rate_4w": null,
-          "z_score_12w": null,
-          "freshness_days": 0.0,
-          "momentum_status": "missing_config"
-        }
-      ]
-    }
-  },
-  {
-    "date": "2026-06-26",
+    "date": "2026-06-27",
     "industry": "低空经济",
-    "composite_score": 29.166666666666664,
+    "composite_score": 33.333333333333336,
     "ranking": 10,
     "ranking_status": "trial",
-    "capital_momentum_score": 29.166666666666664,
+    "capital_momentum_score": 33.333333333333336,
     "tech_activity_score": null,
     "external_signal_score": null,
-    "score_change": 0.0,
+    "score_change": 4.166666666666671,
     "ranking_change": 0,
     "latest_metrics": {
       "daily_metrics": [
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "arxiv_paper_count_4w",
           "value": null,
           "source": "arXiv API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "github_repo_count_4w",
           "value": null,
           "source": "GitHub Search API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "news_heat",
           "value": 0.0,
           "source": "Google News 中文科技",
           "status": "no_match"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "nvd_cve_count_4w",
           "value": null,
           "source": "NVD CVE API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "policy_heat",
           "value": null,
           "source": "configured_sources",
@@ -1061,7 +1068,7 @@
       ],
       "momentum_features": [
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "arxiv_paper_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1069,7 +1076,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "github_repo_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1077,7 +1084,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_return_3m",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1085,7 +1092,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_return_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1093,7 +1100,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_volume_change_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1101,7 +1108,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "news_heat",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1109,7 +1116,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "nvd_cve_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1117,7 +1124,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "policy_heat",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1128,41 +1135,48 @@
     }
   },
   {
-    "date": "2026-06-26",
+    "date": "2026-06-27",
     "industry": "储能",
-    "composite_score": 29.166666666666664,
-    "ranking": 10,
+    "composite_score": 20.83333333333333,
+    "ranking": 11,
     "ranking_status": "trial",
-    "capital_momentum_score": 29.166666666666664,
+    "capital_momentum_score": 20.83333333333333,
     "tech_activity_score": null,
     "external_signal_score": null,
-    "score_change": 0.0,
-    "ranking_change": 0,
+    "score_change": -8.333333333333336,
+    "ranking_change": -1,
     "latest_metrics": {
       "daily_metrics": [
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "arxiv_paper_count_4w",
           "value": null,
           "source": "arXiv API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "github_repo_count_4w",
           "value": null,
           "source": "GitHub Search API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
+          "metric": "news_heat",
+          "value": 0.0,
+          "source": "Google News 中文科技",
+          "status": "no_match"
+        },
+        {
+          "date": "2026-06-27",
           "metric": "nvd_cve_count_4w",
           "value": null,
           "source": "NVD CVE API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "policy_heat",
           "value": null,
           "source": "configured_sources",
@@ -1171,7 +1185,7 @@
       ],
       "momentum_features": [
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "arxiv_paper_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1179,7 +1193,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "github_repo_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1187,7 +1201,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_return_3m",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1195,7 +1209,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_return_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1203,7 +1217,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_volume_change_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1211,15 +1225,15 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "news_heat",
           "growth_rate_4w": null,
           "z_score_12w": null,
-          "freshness_days": 1.0,
+          "freshness_days": 0.0,
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "nvd_cve_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1227,7 +1241,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "policy_heat",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1238,48 +1252,48 @@
     }
   },
   {
-    "date": "2026-06-26",
+    "date": "2026-06-27",
     "industry": "消费零售",
-    "composite_score": 12.499999999999998,
+    "composite_score": 8.333333333333332,
     "ranking": 12,
     "ranking_status": "trial",
-    "capital_momentum_score": 12.499999999999998,
+    "capital_momentum_score": 8.333333333333332,
     "tech_activity_score": null,
     "external_signal_score": null,
-    "score_change": 0.0,
+    "score_change": -4.166666666666666,
     "ranking_change": 0,
     "latest_metrics": {
       "daily_metrics": [
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "arxiv_paper_count_4w",
           "value": null,
           "source": "arXiv API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "github_repo_count_4w",
           "value": null,
           "source": "GitHub Search API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "news_heat",
           "value": 0.0,
           "source": "Google News 中文科技",
           "status": "no_match"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "nvd_cve_count_4w",
           "value": null,
           "source": "NVD CVE API",
           "status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "policy_heat",
           "value": null,
           "source": "configured_sources",
@@ -1288,7 +1302,7 @@
       ],
       "momentum_features": [
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "arxiv_paper_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1296,7 +1310,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "github_repo_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1304,7 +1318,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_return_3m",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1312,7 +1326,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_return_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1320,7 +1334,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "market_volume_change_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1328,7 +1342,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "news_heat",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1336,7 +1350,7 @@
           "momentum_status": "insufficient_history"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "nvd_cve_count_4w",
           "growth_rate_4w": null,
           "z_score_12w": null,
@@ -1344,7 +1358,7 @@
           "momentum_status": "missing_config"
         },
         {
-          "date": "2026-06-26",
+          "date": "2026-06-27",
           "metric": "policy_heat",
           "growth_rate_4w": null,
           "z_score_12w": null,

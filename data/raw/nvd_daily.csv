@@ -1,13 +1,13 @@
 ﻿industry,date,metric,value,source,status
-人工智能,2026-07-01,nvd_cve_count_4w,,NVD CVE API,missing_config
-半导体,2026-07-01,nvd_cve_count_4w,,NVD CVE API,missing_config
-新能源汽车,2026-07-01,nvd_cve_count_4w,,NVD CVE API,missing_config
-储能,2026-07-01,nvd_cve_count_4w,,NVD CVE API,missing_config
-机器人,2026-07-01,nvd_cve_count_4w,,NVD CVE API,missing_config
-低空经济,2026-07-01,nvd_cve_count_4w,,NVD CVE API,missing_config
-跨境电商,2026-07-01,nvd_cve_count_4w,,NVD CVE API,missing_config
-医药健康,2026-07-01,nvd_cve_count_4w,,NVD CVE API,missing_config
-消费零售,2026-07-01,nvd_cve_count_4w,,NVD CVE API,missing_config
-物流供应链,2026-07-01,nvd_cve_count_4w,,NVD CVE API,missing_config
-旅游,2026-07-01,nvd_cve_count_4w,,NVD CVE API,missing_config
-网络安全,2026-07-01,nvd_cve_count_4w,7244.0,NVD CVE API,ok
+人工智能,2026-07-02,nvd_cve_count_4w,,NVD CVE API,missing_config
+半导体,2026-07-02,nvd_cve_count_4w,,NVD CVE API,missing_config
+新能源汽车,2026-07-02,nvd_cve_count_4w,,NVD CVE API,missing_config
+储能,2026-07-02,nvd_cve_count_4w,,NVD CVE API,missing_config
+机器人,2026-07-02,nvd_cve_count_4w,,NVD CVE API,missing_config
+低空经济,2026-07-02,nvd_cve_count_4w,,NVD CVE API,missing_config
+跨境电商,2026-07-02,nvd_cve_count_4w,,NVD CVE API,missing_config
+医药健康,2026-07-02,nvd_cve_count_4w,,NVD CVE API,missing_config
+消费零售,2026-07-02,nvd_cve_count_4w,,NVD CVE API,missing_config
+物流供应链,2026-07-02,nvd_cve_count_4w,,NVD CVE API,missing_config
+旅游,2026-07-02,nvd_cve_count_4w,,NVD CVE API,missing_config
+网络安全,2026-07-02,nvd_cve_count_4w,7062.0,NVD CVE API,ok

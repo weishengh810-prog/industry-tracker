@@ -1,0 +1,18 @@
+{
+  "人工智能": {
+    "value": null,
+    "status": "source_error"
+  },
+  "半导体": {
+    "value": null,
+    "status": "source_error"
+  },
+  "机器人": {
+    "value": null,
+    "status": "source_error"
+  },
+  "医药健康": {
+    "value": null,
+    "status": "source_error"
+  }
+}

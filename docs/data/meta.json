@@ -1,7 +1,20 @@
 {
-  "last_updated": "2026-07-08",
-  "ranking_mode": "试运行评分模式",
-  "insufficient_industries": [],
-  "archive_days": 27,
-  "days_until_full_mode": 1
+  "last_updated": "2026-07-09",
+  "ranking_mode": "历史数据不足",
+  "insufficient_industries": [
+    "人工智能",
+    "低空经济",
+    "储能",
+    "医药健康",
+    "半导体",
+    "新能源汽车",
+    "旅游",
+    "机器人",
+    "消费零售",
+    "物流供应链",
+    "网络安全",
+    "跨境电商"
+  ],
+  "archive_days": 28,
+  "days_until_full_mode": 0
 }

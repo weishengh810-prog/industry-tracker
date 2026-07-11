@@ -4,7 +4,7 @@
 人工智能,market_return_3m,,,1,insufficient_history
 人工智能,market_return_4w,,,1,insufficient_history
 人工智能,market_volume_change_4w,,,1,insufficient_history
-人工智能,news_heat,3.185185185185185,1.8674590926925068,1,ok
+人工智能,news_heat,3.148148148148148,1.589040641251218,1,ok
 人工智能,nvd_cve_count_4w,,,0,missing_config
 人工智能,policy_heat,,,0,missing_config
 低空经济,arxiv_paper_count_4w,,,0,missing_config
@@ -12,7 +12,7 @@
 低空经济,market_return_3m,,,1,insufficient_history
 低空经济,market_return_4w,,,1,insufficient_history
 低空经济,market_volume_change_4w,,,1,insufficient_history
-低空经济,news_heat,,,1,insufficient_history
+低空经济,news_heat,,,0,insufficient_history
 低空经济,nvd_cve_count_4w,,,0,missing_config
 低空经济,policy_heat,,,0,missing_config
 储能,arxiv_paper_count_4w,,,0,missing_config
@@ -23,7 +23,7 @@
 储能,news_heat,,,0,insufficient_history
 储能,nvd_cve_count_4w,,,0,missing_config
 储能,policy_heat,,,0,missing_config
-医药健康,arxiv_paper_count_4w,,,0,source_error
+医药健康,arxiv_paper_count_4w,,,0,insufficient_history
 医药健康,github_repo_count_4w,,,0,missing_config
 医药健康,market_return_3m,,,1,insufficient_history
 医药健康,market_return_4w,,,1,insufficient_history
@@ -60,7 +60,7 @@
 机器人,market_return_3m,,,1,insufficient_history
 机器人,market_return_4w,,,1,insufficient_history
 机器人,market_volume_change_4w,,,1,insufficient_history
-机器人,news_heat,0.16666666666666674,,1,ok
+机器人,news_heat,-0.08333333333333337,,1,ok
 机器人,nvd_cve_count_4w,,,0,missing_config
 机器人,policy_heat,,,0,missing_config
 消费零售,arxiv_paper_count_4w,,,0,missing_config
@@ -76,7 +76,7 @@
 物流供应链,market_return_3m,,,2,insufficient_history
 物流供应链,market_return_4w,,,2,insufficient_history
 物流供应链,market_volume_change_4w,,,2,insufficient_data
-物流供应链,news_heat,,-0.21134098610290414,1,insufficient_history
+物流供应链,news_heat,-0.46153846153846156,-1.039480389675284,0,ok
 物流供应链,nvd_cve_count_4w,,,0,missing_config
 物流供应链,policy_heat,,,0,missing_config
 网络安全,arxiv_paper_count_4w,,,0,missing_config

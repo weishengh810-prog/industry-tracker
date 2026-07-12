@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-11",
+  "last_updated": "2026-07-12",
   "ranking_mode": "历史数据不足",
   "insufficient_industries": [
     "人工智能",
@@ -15,6 +15,6 @@
     "网络安全",
     "跨境电商"
   ],
-  "archive_days": 30,
+  "archive_days": 31,
   "days_until_full_mode": 0
 }

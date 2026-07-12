@@ -1,13 +1,13 @@
 ﻿industry,date,metric,value,source,status
-人工智能,2026-07-11,arxiv_paper_count_4w,4986.0,arXiv API,ok
-半导体,2026-07-11,arxiv_paper_count_4w,270.0,arXiv API,ok
-新能源汽车,2026-07-11,arxiv_paper_count_4w,,arXiv API,missing_config
-储能,2026-07-11,arxiv_paper_count_4w,,arXiv API,missing_config
-机器人,2026-07-11,arxiv_paper_count_4w,1381.0,arXiv API,ok
-低空经济,2026-07-11,arxiv_paper_count_4w,,arXiv API,missing_config
-跨境电商,2026-07-11,arxiv_paper_count_4w,,arXiv API,missing_config
-医药健康,2026-07-11,arxiv_paper_count_4w,8.0,arXiv API,ok
-消费零售,2026-07-11,arxiv_paper_count_4w,,arXiv API,missing_config
-物流供应链,2026-07-11,arxiv_paper_count_4w,,arXiv API,missing_config
-旅游,2026-07-11,arxiv_paper_count_4w,,arXiv API,missing_config
-网络安全,2026-07-11,arxiv_paper_count_4w,,arXiv API,missing_config
+人工智能,2026-07-12,arxiv_paper_count_4w,4848.0,arXiv API,ok
+半导体,2026-07-12,arxiv_paper_count_4w,267.0,arXiv API,ok
+新能源汽车,2026-07-12,arxiv_paper_count_4w,,arXiv API,missing_config
+储能,2026-07-12,arxiv_paper_count_4w,,arXiv API,missing_config
+机器人,2026-07-12,arxiv_paper_count_4w,1352.0,arXiv API,ok
+低空经济,2026-07-12,arxiv_paper_count_4w,,arXiv API,missing_config
+跨境电商,2026-07-12,arxiv_paper_count_4w,,arXiv API,missing_config
+医药健康,2026-07-12,arxiv_paper_count_4w,8.0,arXiv API,ok
+消费零售,2026-07-12,arxiv_paper_count_4w,,arXiv API,missing_config
+物流供应链,2026-07-12,arxiv_paper_count_4w,,arXiv API,missing_config
+旅游,2026-07-12,arxiv_paper_count_4w,,arXiv API,missing_config
+网络安全,2026-07-12,arxiv_paper_count_4w,,arXiv API,missing_config
